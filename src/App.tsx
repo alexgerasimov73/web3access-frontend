@@ -24,6 +24,7 @@ function App() {
   return (
     <>
       <h1>{store.isAuth ? `The user is authorized ${store.user?.email}` : 'Please log in'}</h1>
+      <h2>{store.user?.isActivated ? 'Account verified' : 'Please verify your accont by email'}</h2>
       <button onClick={() => store.logout()}>Logout</button>
     </>
   );
