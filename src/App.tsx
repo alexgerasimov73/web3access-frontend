@@ -1,19 +1,17 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import { Context } from './main';
+import { store } from './store/store';
 import { LoginForm } from './components/LoginForm';
 import './App.css';
 
 function App() {
-  const { store } = useContext(Context);
-
   useEffect(() => {
     if (localStorage.getItem('token')) {
       store.checkAuth();
     }
   }, []);
 
-  if (!store.isLoading) {
+  if (store.isLoading) {
     return <div>Loading...</div>;
   }
 

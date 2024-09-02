@@ -4,7 +4,7 @@ import { IAuthResponse, IUser } from '../models/models';
 import { login, registration } from '../services/AuthService';
 import axios from 'axios';
 
-export default class Store {
+class Store {
   user: IUser | null = null;
   isAuth = false;
   isLoading = false;
@@ -25,13 +25,16 @@ export default class Store {
     this.isLoading = bool;
   }
 
+  private handleAuthSuccess(accessToken: string, user: IUser) {
+    localStorage.setItem('token', accessToken);
+    this.setAuth(true);
+    this.setUser(user);
+  }
+
   async login(email: string, password: string) {
     try {
       const response = await login(email, password);
-      console.log('response', response);
-      localStorage.setItem('token', response.data.accessToken);
-      this.setAuth(true);
-      this.setUser(response.data.user);
+      this.handleAuthSuccess(response.data.accessToken, response.data.user);
     } catch (error) {
       console.error(error);
     }
@@ -40,10 +43,7 @@ export default class Store {
   async register(email: string, password: string) {
     try {
       const response = await registration(email, password);
-      console.log('response', response);
-      localStorage.setItem('token', response.data.accessToken);
-      this.setAuth(true);
-      this.setUser(response.data.user);
+      this.handleAuthSuccess(response.data.accessToken, response.data.user);
     } catch (error) {
       console.error(error);
     }
@@ -67,10 +67,7 @@ export default class Store {
         `${import.meta.env.API_URL || 'http://localhost:5001/api'}/refresh`,
         { withCredentials: true },
       );
-      console.log('response', response);
-      localStorage.setItem('token', response.data.accessToken);
-      this.setAuth(true);
-      this.setUser(response.data.user);
+      this.handleAuthSuccess(response.data.accessToken, response.data.user);
     } catch (error) {
       console.error(error);
     } finally {
@@ -78,3 +75,5 @@ export default class Store {
     }
   }
 }
+
+export const store = new Store();

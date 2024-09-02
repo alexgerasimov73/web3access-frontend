@@ -1,11 +1,10 @@
-import { useContext, useState } from 'react';
-import { Context } from '../main';
+import { useState } from 'react';
 import { observer } from 'mobx-react-lite';
+import { store } from '../store/store';
 
 export const LoginForm = observer(() => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { store } = useContext(Context);
 
   return (
     <div>
