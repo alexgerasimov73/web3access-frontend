@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { IAuthResponse } from '../models/models';
+import type { IAuthResponse } from '../models/models';
 
-console.log(import.meta.env.API_URL);
 const api = axios.create({
-  baseURL: import.meta.env.API_URL || 'http://localhost:5001/api',
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
 });
 
@@ -24,10 +23,9 @@ api.interceptors.response.use(
     if (error.response.status == 401 && error.config.config && !error.config.config._isRetry) {
       originalRequest._isRetry = true;
       try {
-        const response = await axios.get<IAuthResponse>(
-          `${import.meta.env.API_URL || 'http://localhost:5001/api'}/refresh`,
-          { withCredentials: true },
-        );
+        const response = await axios.get<IAuthResponse>(`${import.meta.env.VITE_API_URL}/refresh`, {
+          withCredentials: true,
+        });
         localStorage.setItem('token', response.data.accessToken);
 
         return api.request(originalRequest);
