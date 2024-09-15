@@ -1,6 +1,6 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import { Home } from '../pages/Home/Home';
-import { ProtectedRoute } from './ProtectedRoute';
+import { ProtectedRoute } from './guard/index';
 
 export const router = createBrowserRouter(
   //   [
@@ -10,7 +10,7 @@ export const router = createBrowserRouter(
   //   },
   // ]
   createRoutesFromElements(
-    <Route element={<ProtectedRoute />}>
+    <Route element={<ProtectedRoute.ConnectedWallet />}>
       <Route path="/" element={<Home />} />
     </Route>,
   ),
