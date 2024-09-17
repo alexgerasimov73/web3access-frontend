@@ -4,10 +4,9 @@ import { sepolia } from 'viem/chains';
 import { useConnect } from 'wagmi';
 import { web3AuthOptionsBuilder } from '../providers/ChainProvider/web3AuthOptionsBuilder';
 
-
 export const enum ConnectorNames {
-  MetaMask = "MetaMask",
-  Web3Auth = "Web3Auth",
+  MetaMask = 'MetaMask',
+  Web3Auth = 'Web3Auth',
 }
 
 interface SingleValueFormType {
@@ -17,13 +16,15 @@ interface SingleValueFormType {
 export const Connectors = () => {
   const { connect, connectors } = useConnect();
 
-  const connectWithWeb3Auth = (options?: OpenloginLoginParams) => connect({ connector: new Web3AuthConnector(web3AuthOptionsBuilder(sepolia, options)) })
+  // console.log('first, ', web3AuthOptionsBuilder(sepolia, { loginProvider: 'linkedin' }));
 
-  const loginWithGoogle = () => connectWithWeb3Auth();
+  // const connectWithWeb3Auth = (options?: OpenloginLoginParams) => connect({ connector: new Web3AuthConnector(web3AuthOptionsBuilder(sepolia, options)) })
 
-  const loginWithLinkedIn = () => connectWithWeb3Auth({ loginProvider: "linkedin" })
+  // const loginWithGoogle = () => connectWithWeb3Auth();
 
-  const loginWithEmail = ({ emailAddress }: SingleValueFormType) => connectWithWeb3Auth({ loginProvider: "email_passwordless", login_hint: emailAddress })
+  // const loginWithLinkedIn = () => connectWithWeb3Auth({ loginProvider: "linkedin" })
+
+  // const loginWithEmail = ({ emailAddress }: SingleValueFormType) => connectWithWeb3Auth({ loginProvider: "email_passwordless", login_hint: emailAddress })
 
   const loginWithMetaMask = () => {
     // We use this way of connecting because when we try to use the connect method with MetaMaskConnector,
@@ -33,10 +34,11 @@ export const Connectors = () => {
         connect({ connector });
       }
     });
+  };
 
   return (
     <div className="Connectors">
-      <div>
+      {/* <div>
         <h3>Sign in</h3>
         <p>Your wallet with one click</p>
       </div>
@@ -46,8 +48,7 @@ export const Connectors = () => {
         <button onClick={loginWithLinkedIn}>LinkedIn</button>
       </div>
 
-      {/* <form onSubmit={loginWithEmail}> */}
-      <form>
+      <form onSubmit={loginWithEmail}>
         <div>
           <label>Email</label>
           <input type="string" name='emailAddress' placeholder="E.g. hello@example.com" />
@@ -58,7 +59,7 @@ export const Connectors = () => {
       <div className="wallet">
         <p>External wallet</p>
         <button onClick={loginWithMetaMask}>Connect with MetaMask</button>
-      </div>
+      </div> */}
     </div>
-  )
-}
+  );
+};

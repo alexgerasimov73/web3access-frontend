@@ -1,8 +1,26 @@
-import { CHAIN_NAMESPACES, UX_MODE, WEB3AUTH_NETWORK } from '@web3auth/base';
 import { EthereumPrivateKeyProvider } from '@web3auth/ethereum-provider';
 import { Web3AuthNoModal } from '@web3auth/no-modal';
 import { OpenloginAdapter, OpenloginLoginParams } from '@web3auth/openlogin-adapter';
 import type { Chain } from 'wagmi/chains';
+import { CHAIN_NAMESPACES, UX_MODE, WEB3AUTH_NETWORK } from '@web3auth/base';
+
+// const CHAIN_NAMESPACES = {
+//   EIP155: 'eip155',
+//   SOLANA: 'solana',
+//   CASPER: 'casper',
+//   XRPL: 'xrpl',
+//   OTHER: 'other',
+// } as const;
+
+// const WEB3AUTH_NETWORK = {
+//   MAINNET: 'mainnet',
+//   TESTNET: 'testnet',
+//   CYAN: 'cyan',
+//   AQUA: 'aqua',
+//   CELESTE: 'celeste',
+//   SAPPHIRE_DEVNET: 'sapphire_devnet',
+//   SAPPHIRE_MAINNET: 'sapphire_mainnet',
+// } as const;
 
 export const web3AuthOptionsBuilder = (
   chain: Chain,
@@ -13,9 +31,9 @@ export const web3AuthOptionsBuilder = (
     chainId: '0x' + chain.id.toString(16),
     rpcTarget: chain.rpcUrls.default.http[0],
     displayName: chain.name,
-    tickerName: chain.nativeCurrency.name,
-    ticker: chain.nativeCurrency.symbol,
-    blockExplorer: chain.blockExplorers?.default.url[0],
+    tickerName: chain.nativeCurrency?.name,
+    ticker: chain.nativeCurrency?.symbol,
+    blockExplorerUrl: chain.blockExplorers?.default.url[0],
   };
 
   const web3AuthInstance = new Web3AuthNoModal({
@@ -26,7 +44,6 @@ export const web3AuthOptionsBuilder = (
     web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_DEVNET,
     enableLogging: true,
   });
-
   web3AuthInstance.configureAdapter(
     new OpenloginAdapter({
       adapterSettings: {
@@ -39,16 +56,13 @@ export const web3AuthOptionsBuilder = (
   //   walletInitOptions: {
   //     whiteLabel: {
   //       showWidgetButton: true,
-  //     }
-  //   }
+  //     },
+  //   },
   // });
   // web3AuthInstance.addPlugin(walletServicesPlugin);
 
   return {
-    chains: [chain],
-    options: {
-      web3AuthInstance,
-      loginParams,
-    },
+    web3AuthInstance,
+    loginParams,
   };
 };

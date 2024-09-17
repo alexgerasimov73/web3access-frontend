@@ -5,16 +5,20 @@ import { PropsWithChildren } from 'react';
 import { createConfig, http, WagmiProvider } from 'wagmi';
 import { sepolia } from 'wagmi/chains';
 import { web3AuthOptionsBuilder } from './web3AuthOptionsBuilder';
+import { injected } from 'wagmi/connectors';
 
 export const ChainProvider = ({ children }: PropsWithChildren) => {
   const queryClient = new QueryClient();
 
-  const web3connector = new Web3AuthConnector(web3AuthOptionsBuilder(sepolia));
+  // const web3connector = new Web3AuthCo
+  console.log('sepolia', sepolia);
+
+  console.log('first', web3AuthOptionsBuilder(sepolia));
 
   const config = createConfig({
     chains: [sepolia],
     // connectors: [new Web3AuthConnector(web3AuthOptionsBuilder(sepolia)), new MetaMaskConnector({ sepolia })],
-    connectors: [web3connector],
+    connectors: [injected()],
     transports: {
       [sepolia.id]: http(),
     },
