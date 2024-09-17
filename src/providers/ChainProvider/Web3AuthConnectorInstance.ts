@@ -27,6 +27,7 @@ export const Web3AuthConnectorInstance = (
     web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_DEVNET,
     // enableLogging: true,
   });
+
   web3AuthInstance.configureAdapter(
     new OpenloginAdapter({
       adapterSettings: {

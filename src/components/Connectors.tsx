@@ -26,10 +26,7 @@ export const Connectors = () => {
     connectWithWeb3Auth({ loginProvider: 'email_passwordless', login_hint: emailAddress });
 
   const loginWithMetaMask = () => {
-    // We use this way of connecting because when we try to use the connect method with MetaMaskConnector,
-    // MetaMaskConnector doesn't save data about the connection in localStorage.
     connectors.map((connector) => {
-      console.log('connector', connector);
       if (connector.name === ConnectorNames.MetaMask) {
         connect({ connector });
       }
