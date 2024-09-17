@@ -9,7 +9,8 @@ export const ConnectWallet = () => {
 
   if (isConnecting || isReconnecting) return <Loader />;
 
-  if (!isConnected) return <Connectors />;
+  // TODO: Remove the exclamation mark.
+  if (isConnected) return <Connectors />;
 
   if (chainId !== sepolia.id) return <SwitchNetwork />;
 

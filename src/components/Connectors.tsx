@@ -1,8 +1,7 @@
 import { OpenloginLoginParams } from '@web3auth/openlogin-adapter';
-import { Web3AuthConnector } from '@web3auth/web3auth-wagmi-connector';
 import { sepolia } from 'viem/chains';
 import { useConnect } from 'wagmi';
-import { web3AuthOptionsBuilder } from '../providers/ChainProvider/web3AuthOptionsBuilder';
+import { Web3AuthConnectorInstance } from '../providers/ChainProvider/Web3AuthConnectorInstance';
 
 export const enum ConnectorNames {
   MetaMask = 'MetaMask',
@@ -16,20 +15,21 @@ interface SingleValueFormType {
 export const Connectors = () => {
   const { connect, connectors } = useConnect();
 
-  // console.log('first, ', web3AuthOptionsBuilder(sepolia, { loginProvider: 'linkedin' }));
+  const connectWithWeb3Auth = (options?: OpenloginLoginParams) =>
+    connect({ connector: Web3AuthConnectorInstance(sepolia, options) });
 
-  // const connectWithWeb3Auth = (options?: OpenloginLoginParams) => connect({ connector: new Web3AuthConnector(web3AuthOptionsBuilder(sepolia, options)) })
+  const loginWithGoogle = () => connectWithWeb3Auth();
 
-  // const loginWithGoogle = () => connectWithWeb3Auth();
+  const loginWithLinkedIn = () => connectWithWeb3Auth({ loginProvider: 'linkedin' });
 
-  // const loginWithLinkedIn = () => connectWithWeb3Auth({ loginProvider: "linkedin" })
-
-  // const loginWithEmail = ({ emailAddress }: SingleValueFormType) => connectWithWeb3Auth({ loginProvider: "email_passwordless", login_hint: emailAddress })
+  const loginWithEmail = ({ emailAddress }: SingleValueFormType) =>
+    connectWithWeb3Auth({ loginProvider: 'email_passwordless', login_hint: emailAddress });
 
   const loginWithMetaMask = () => {
     // We use this way of connecting because when we try to use the connect method with MetaMaskConnector,
     // MetaMaskConnector doesn't save data about the connection in localStorage.
     connectors.map((connector) => {
+      console.log('connector', connector);
       if (connector.name === ConnectorNames.MetaMask) {
         connect({ connector });
       }
@@ -38,7 +38,7 @@ export const Connectors = () => {
 
   return (
     <div className="Connectors">
-      {/* <div>
+      <div>
         <h3>Sign in</h3>
         <p>Your wallet with one click</p>
       </div>
@@ -48,10 +48,10 @@ export const Connectors = () => {
         <button onClick={loginWithLinkedIn}>LinkedIn</button>
       </div>
 
-      <form onSubmit={loginWithEmail}>
+      <form>
         <div>
           <label>Email</label>
-          <input type="string" name='emailAddress' placeholder="E.g. hello@example.com" />
+          <input type="string" name="emailAddress" placeholder="E.g. hello@example.com" />
         </div>
         <button type="submit">Continue with Email</button>
       </form>
@@ -59,7 +59,7 @@ export const Connectors = () => {
       <div className="wallet">
         <p>External wallet</p>
         <button onClick={loginWithMetaMask}>Connect with MetaMask</button>
-      </div> */}
+      </div>
     </div>
   );
 };

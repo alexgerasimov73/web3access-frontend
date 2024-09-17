@@ -1,28 +1,11 @@
 import { EthereumPrivateKeyProvider } from '@web3auth/ethereum-provider';
+import { Web3AuthConnector } from '@web3auth/web3auth-wagmi-connector';
 import { Web3AuthNoModal } from '@web3auth/no-modal';
 import { OpenloginAdapter, OpenloginLoginParams } from '@web3auth/openlogin-adapter';
 import type { Chain } from 'wagmi/chains';
 import { CHAIN_NAMESPACES, UX_MODE, WEB3AUTH_NETWORK } from '@web3auth/base';
 
-// const CHAIN_NAMESPACES = {
-//   EIP155: 'eip155',
-//   SOLANA: 'solana',
-//   CASPER: 'casper',
-//   XRPL: 'xrpl',
-//   OTHER: 'other',
-// } as const;
-
-// const WEB3AUTH_NETWORK = {
-//   MAINNET: 'mainnet',
-//   TESTNET: 'testnet',
-//   CYAN: 'cyan',
-//   AQUA: 'aqua',
-//   CELESTE: 'celeste',
-//   SAPPHIRE_DEVNET: 'sapphire_devnet',
-//   SAPPHIRE_MAINNET: 'sapphire_mainnet',
-// } as const;
-
-export const web3AuthOptionsBuilder = (
+export const Web3AuthConnectorInstance = (
   chain: Chain,
   loginParams: OpenloginLoginParams = { loginProvider: 'google' },
 ) => {
@@ -42,7 +25,7 @@ export const web3AuthOptionsBuilder = (
     chainConfig,
     privateKeyProvider: new EthereumPrivateKeyProvider({ config: { chainConfig } }),
     web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_DEVNET,
-    enableLogging: true,
+    // enableLogging: true,
   });
   web3AuthInstance.configureAdapter(
     new OpenloginAdapter({
@@ -61,8 +44,8 @@ export const web3AuthOptionsBuilder = (
   // });
   // web3AuthInstance.addPlugin(walletServicesPlugin);
 
-  return {
+  return Web3AuthConnector({
     web3AuthInstance,
     loginParams,
-  };
+  });
 };
