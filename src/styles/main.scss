@@ -1,4 +1,5 @@
 @import 'variables';
+@import './components/_index';
 
 :root {
   font-family: Darker Grotesque, Avenir, Helvetica, Arial, sans-serif;
@@ -14,6 +15,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+// .ColumnDirectionWithGap($gap) {
+//   display: flex;
+//   flex-direction: column;
+//   gap: $gap;
+// }
 
 // a {
 //   font-weight: 500;

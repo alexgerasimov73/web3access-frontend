@@ -21,6 +21,15 @@ const theme = extendTheme({
     heading: '"Darker Grotesque", "Avenir", "Helvetica", "Arial", sans-serif',
     body: '"Darker Grotesque", "Avenir", "Helvetica", "Arial", sans-serif',
   },
+  styles: {
+    global: {
+      body: {
+        bg: 'brand.900',
+        color: 'brand.400',
+        fontSize: 'lg',
+      },
+    },
+  },
 });
 
 export default theme;

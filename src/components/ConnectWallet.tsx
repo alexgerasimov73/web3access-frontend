@@ -7,12 +7,13 @@ import { SwitchNetwork } from './SwitchNetwork';
 export const ConnectWallet = () => {
   const { chainId, isConnected, isConnecting, isReconnecting } = useAccount();
 
-  if (isConnecting || isReconnecting) return <Loader />;
+  const getContent = () => {
+    if (isConnecting || isReconnecting) return <Loader />;
+    // TODO: Remove the exclamation mark.
+    if (isConnected) return <Connectors />;
 
-  // TODO: Remove the exclamation mark.
-  if (isConnected) return <Connectors />;
+    if (chainId !== sepolia.id) return <SwitchNetwork />;
+  };
 
-  if (chainId !== sepolia.id) return <SwitchNetwork />;
-
-  return <></>;
+  return <div className="ConnectWallet">{getContent()}</div>;
 };
