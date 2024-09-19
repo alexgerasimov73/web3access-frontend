@@ -5,6 +5,18 @@ const config: ThemeConfig = {
   useSystemColorMode: false,
 };
 
+const inputSelectStyles = {
+  variants: {
+    outline: {
+      field: {
+        _focus: {
+          borderColor: 'brand.800',
+        },
+      },
+    },
+  },
+};
+
 const theme = extendTheme({
   config,
   colors: {
@@ -21,6 +33,9 @@ const theme = extendTheme({
     heading: '"Darker Grotesque", "Avenir", "Helvetica", "Arial", sans-serif',
     body: '"Darker Grotesque", "Avenir", "Helvetica", "Arial", sans-serif',
   },
+  shadows: {
+    outline: '0 0 0 3px rgba(240, 115, 0, 0.6)',
+  },
   styles: {
     global: {
       body: {
@@ -29,6 +44,10 @@ const theme = extendTheme({
         fontSize: 'lg',
       },
     },
+  },
+  components: {
+    Input: { ...inputSelectStyles },
+    Select: { ...inputSelectStyles },
   },
 });
 

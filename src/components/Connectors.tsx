@@ -2,6 +2,20 @@ import { OpenloginLoginParams } from '@web3auth/openlogin-adapter';
 import { sepolia } from 'viem/chains';
 import { useConnect } from 'wagmi';
 import { Web3AuthConnectorInstance } from '../providers/ChainProvider/Web3AuthConnectorInstance';
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Image,
+  Input,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
+import { GoogleColor, LinkedInColor, MetaMask } from '../assets';
 
 export const enum ConnectorNames {
   MetaMask = 'MetaMask',
@@ -34,29 +48,54 @@ export const Connectors = () => {
   };
 
   return (
-    <div className="Connectors">
-      <div>
-        <h3>Sign in</h3>
-        <p>Your wallet with one click</p>
-      </div>
-      <div className="Buttons">
-        <p>Continue with</p>
-        <button onClick={loginWithGoogle}>Google</button>
-        <button onClick={loginWithLinkedIn}>LinkedIn</button>
-      </div>
+    <Flex
+      className="RotationAnimation"
+      direction="column"
+      gap={10}
+      w={360}
+      p="24px 32px 56px"
+      borderRadius={16}
+      border="1px"
+      borderColor="brand.800">
+      <VStack>
+        <Heading as="h2">Sign in</Heading>
+        <Text>Connect your wallet with one click</Text>
+        <Divider borderColor="brand.800" />
+      </VStack>
+
+      <Flex flexFlow="wrap" justify="space-between">
+        <Text w="full" mb="2" align="center">
+          Continue with
+        </Text>
+        <Button gap={2} w="47%" colorScheme="gray" onClick={loginWithGoogle}>
+          <Image boxSize="18px" src={GoogleColor} />
+          Google
+        </Button>
+        <Button gap={2} w="47%" colorScheme="green" onClick={loginWithLinkedIn}>
+          <Image boxSize="18px" src={LinkedInColor} />
+          LinkedIn
+        </Button>
+      </Flex>
 
       <form>
-        <div>
-          <label>Email</label>
-          <input type="string" name="emailAddress" placeholder="E.g. hello@example.com" />
-        </div>
-        <button type="submit">Continue with Email</button>
+        <FormControl mb="4">
+          <FormLabel>Email</FormLabel>
+          <Input name="emailAddress" placeholder="E.g. hello@example.com" />
+        </FormControl>
+        <Button w="full" colorScheme="green" type="submit">
+          Continue with Email
+        </Button>
       </form>
 
-      <div className="wallet">
-        <p>External wallet</p>
-        <button onClick={loginWithMetaMask}>Connect with MetaMask</button>
-      </div>
-    </div>
+      <Box>
+        <Text mb="2" align="center">
+          External wallet
+        </Text>
+        <Button gap={2} w="full" colorScheme="green" onClick={loginWithMetaMask}>
+          <Image boxSize="18px" src={MetaMask} />
+          Connect with MetaMask
+        </Button>
+      </Box>
+    </Flex>
   );
 };

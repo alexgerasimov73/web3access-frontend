@@ -16,6 +16,25 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 0s 600000s, color 0s 600000s !important;
+}
+
+.RotationAnimation {
+  transform: perspective(550px) rotateY(90deg);
+  animation: $durationLong rotation 0.5s $easeOutBack forwards;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotateY(90deg);
+  }
+  to {
+    transform: perspective(550px) rotateY(0deg);
+  }
+}
+
 // .ColumnDirectionWithGap($gap) {
 //   display: flex;
 //   flex-direction: column;
