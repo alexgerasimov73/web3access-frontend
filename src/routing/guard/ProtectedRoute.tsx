@@ -16,8 +16,7 @@ const Guard = ({ requires }: Props) => {
 
   const authorized = requires === Permission.ConnectedWallet && isConnected;
 
-  // TODO: Remove the exclamation mark.
-  return !authorized ? <Outlet /> : <ConnectWallet />;
+  return authorized ? <Outlet /> : <ConnectWallet />;
 };
 
 export const ConnectedWallet = () => <Guard requires={Permission.ConnectedWallet} />;
