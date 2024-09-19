@@ -11,18 +11,18 @@ import {
   useDisclosure,
   VStack,
 } from '@chakra-ui/react';
-import { MetaMask, Wallet } from '../assets';
+import { AvocadoAvatar, MetaMask, Wallet } from '../assets';
 
 export const WalletBadge = () => {
   const { address, chain, connector } = useAccount();
   const { disconnect } = useDisconnect();
-  const { isOpen } = useDisclosure();
+  const { isOpen, onClose, onOpen } = useDisclosure();
 
   const handleDisconnect = () => disconnect();
 
   return (
     <>
-      <Popover>
+      <Popover isLazy offset={[-208, 12]} isOpen={isOpen} onClose={onClose} onOpen={onOpen}>
         <PopoverTrigger>
           <Button
             pos="fixed"
@@ -33,22 +33,33 @@ export const WalletBadge = () => {
             _hover={{
               transform: 'translateX(-2px)',
             }}>
-            <Image src={Wallet} alt="wallet" />
+            <Image
+              src={Wallet}
+              alt="wallet"
+              transition="transform 0.2s"
+              transform={`${isOpen ? 'rotate(35deg)' : 'unset'}`}
+            />
           </Button>
         </PopoverTrigger>
-        <PopoverContent minW="480px" p={4} color="brand.900">
-          <VStack align="flex-start" spacing={4}>
-            <Button colorScheme="red" variant="link" onClick={handleDisconnect}>
+        <PopoverContent minW="480px" p={4} bg="brand.500" color="brand.900">
+          <VStack align="flex-start" spacing={2}>
+            <Button
+              alignSelf="flex-end"
+              colorScheme="red"
+              variant="link"
+              onClick={handleDisconnect}>
               Disconnect
             </Button>
 
             <HStack spacing={2}>
-              <Image boxSize="18px" src={MetaMask} />
-              <Text>{`Connected to the ${chain?.name} network via ${connector?.name}`}</Text>
+              <Image boxSize="24px" src={MetaMask} />
+              <Text>
+                Connected to the <b>{chain?.name}</b> network via <b>{connector?.name}</b>
+              </Text>
             </HStack>
 
             <HStack spacing={2}>
-              <Image boxSize="18px" src={MetaMask} />
+              <Image boxSize="24px" src={AvocadoAvatar} />
               <Text>{address}</Text>
             </HStack>
           </VStack>
