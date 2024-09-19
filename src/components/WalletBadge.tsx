@@ -11,7 +11,8 @@ import {
   useDisclosure,
   VStack,
 } from '@chakra-ui/react';
-import { AvocadoAvatar, MetaMask, Wallet } from '../assets';
+import { AvocadoAvatar, Wallet } from '../assets';
+import { logoFor } from '../helpers/utils';
 
 export const WalletBadge = () => {
   const { address, chain, connector } = useAccount();
@@ -51,12 +52,14 @@ export const WalletBadge = () => {
               Disconnect
             </Button>
 
-            <HStack spacing={2}>
-              <Image boxSize="24px" src={MetaMask} />
-              <Text>
-                Connected to the <b>{chain?.name}</b> network via <b>{connector?.name}</b>
-              </Text>
-            </HStack>
+            {connector && chain && (
+              <HStack spacing={2}>
+                <Image boxSize="24px" src={logoFor(connector.name)} />
+                <Text>
+                  Connected to the <b>{chain.name}</b> network via <b>{connector.name}</b>
+                </Text>
+              </HStack>
+            )}
 
             <HStack spacing={2}>
               <Image boxSize="24px" src={AvocadoAvatar} />

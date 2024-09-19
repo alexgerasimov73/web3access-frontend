@@ -18,11 +18,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { GoogleColor, LinkedInColor, MetaMask } from '../assets';
-
-export const enum ConnectorNames {
-  MetaMask = 'MetaMask',
-  Web3Auth = 'Web3Auth',
-}
+import { ConnectorNames } from '../helpers/constants';
 
 interface SingleValueFormType {
   readonly emailAddress: string;
