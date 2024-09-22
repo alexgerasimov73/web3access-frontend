@@ -1,5 +1,6 @@
 import { Button, Flex, Heading, HStack, VStack } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { Login } from './Login';
 
 export const GreetingPage = () => (
   <Flex justify="center" align="center" h="100vh">
@@ -8,6 +9,7 @@ export const GreetingPage = () => (
         <Heading>Already have an account?</Heading>
         <Heading>Brilliant!</Heading>
         <Heading>Login, please</Heading>
+        <Login />
       </VStack>
       <VStack
         alignSelf="flex-end"

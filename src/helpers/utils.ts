@@ -11,3 +11,6 @@ export const logoFor = (attribute: string) => {
       return undefined;
   }
 };
+
+// Returns a signed-plaintext-compatible string representation of the passed date.
+export const formatDateForSignature = (d: Date) => d.toISOString().split('.')[0] + 'Z';

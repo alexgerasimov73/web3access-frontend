@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { makeAutoObservable } from 'mobx';
-import type { IAuthResponse, IUser } from '../models/models';
+import type { IAuthResponse, ISettings, IUser } from '../models/models';
 import { login, logout, registration } from '../services/AuthService';
 
 class Store {
   user: IUser | null = null;
   isAuth = false;
   isLoading = false;
+  settings: ISettings | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -22,6 +23,10 @@ class Store {
 
   setIsLoading(bool: boolean) {
     this.isLoading = bool;
+  }
+
+  setSettings(settings: ISettings) {
+    this.settings = settings;
   }
 
   private handleAuthSuccess(accessToken: string, user: IUser) {
@@ -66,6 +71,21 @@ class Store {
         withCredentials: true,
       });
       this.handleAuthSuccess(response.data.accessToken, response.data.user);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.setIsLoading(false);
+    }
+  }
+
+  async getSettings() {
+    this.setIsLoading(true);
+    try {
+      // TODO: Implement this request.
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/settings`, {
+        withCredentials: true,
+      });
+      this.setSettings(response.data.settings);
     } catch (error) {
       console.error(error);
     } finally {

@@ -9,3 +9,13 @@ export interface IAuthResponse {
   readonly refreshToken: string;
   readonly user: IUser;
 }
+
+export interface ISettings {
+  readonly settings: string;
+  readonly chain: {
+    readonly chainId: string;
+  };
+  readonly core: {
+    readonly signInSignatureTemplate: string;
+  };
+}
