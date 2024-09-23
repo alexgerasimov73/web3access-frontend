@@ -97,7 +97,7 @@ export const Connectors = () => {
           />
           <FormErrorMessage>{errors.emailAddress && errors.emailAddress.message}</FormErrorMessage>
         </FormControl>
-        <Button w="full" colorScheme="green" isLoading={isSubmitting} type="submit">
+        <Button w="full" colorScheme="orange" isLoading={isSubmitting} type="submit">
           Continue with Email
         </Button>
       </form>

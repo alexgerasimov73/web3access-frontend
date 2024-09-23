@@ -37,7 +37,7 @@ export const Login = () => {
   };
 
   return (
-    <Button disabled={isSigning} onClick={handleLogin}>
+    <Button disabled={isSigning} size="lg" colorScheme="green" onClick={handleLogin}>
       Login
     </Button>
   );
