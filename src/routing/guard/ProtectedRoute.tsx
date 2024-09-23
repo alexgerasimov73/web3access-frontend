@@ -15,12 +15,10 @@ interface Props {
 
 const Guard = ({ requires }: Props) => {
   const { isConnected } = useAccount();
-  console.log('requires', requires);
 
   const authorized =
     (requires === Permission.AuthenticatedAndIdentified && store.user) ||
     (requires === Permission.ConnectedWallet && isConnected);
-  console.log('authorized', authorized);
 
   return authorized ? (
     <Outlet />
