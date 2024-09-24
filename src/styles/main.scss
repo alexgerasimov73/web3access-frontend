@@ -26,6 +26,10 @@ input:-webkit-autofill:focus {
   animation: $durationLong rotation 0.5s $easeOutBack forwards;
 }
 
+.SlideFromTop {
+  animation: slideFromTop 0.7s $easeInOutBack forwards;
+}
+
 @keyframes rotation {
   from {
     transform: rotateY(90deg);
