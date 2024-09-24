@@ -17,7 +17,7 @@ export const ConnectWallet = () => {
   };
 
   return (
-    <Flex justify="center" align="center" h="100vh" className="ConnectWallet">
+    <Flex justify="center" align="center" h="100vh">
       {getContent()}
     </Flex>
   );

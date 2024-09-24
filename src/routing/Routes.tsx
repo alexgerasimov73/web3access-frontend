@@ -14,7 +14,7 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<ProtectedRoute.ConnectedWallet />}>
       <Route path="/" element={<WalletBadge />}>
-        <Route path="/registration" element={<Registration />} />
+        <Route path="registration" element={<Registration />} />
         <Route element={<ProtectedRoute.AuthenticatedAndIdentified />}>
           <Route index element={<Home />} />
         </Route>

@@ -1,3 +1,15 @@
+import { Flex } from '@chakra-ui/react';
+import { useSearchParams } from 'react-router-dom';
+import { RegistrationFlow } from './RegistrationFlow';
+import { StartRegistration } from './StartRegistration';
+
 export const Registration = () => {
-  return <></>;
+  const [searchParam] = useSearchParams();
+  const registrationId = searchParam.get('id');
+
+  return (
+    <Flex justify="center" align="center" h="100vh">
+      {registrationId ? <RegistrationFlow id={registrationId} /> : <StartRegistration />}
+    </Flex>
+  );
 };
