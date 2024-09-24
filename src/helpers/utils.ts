@@ -1,6 +1,10 @@
 import { MetaMask, Web3AuthLogo } from '../assets';
 import { ConnectorNames } from './constants';
 
+export const assertUnreachable = (x: never): never => {
+  throw new Error(`Value should be 'never' but found ${JSON.stringify(x)} instead.`);
+};
+
 export const logoFor = (attribute: string) => {
   switch (attribute) {
     case ConnectorNames.MetaMask:

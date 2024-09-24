@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 import { useSearchParams } from 'react-router-dom';
 import { RegistrationFlow } from './RegistrationFlow';
-import { StartRegistration } from './StartRegistration';
+import { StartRegistration } from './StartRegistration/StartRegistration';
 
 export const Registration = () => {
   const [searchParam] = useSearchParams();
