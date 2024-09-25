@@ -10,7 +10,7 @@ import {
 import { useForm } from 'react-hook-form';
 import { StartRegistrationStep } from '../../../../helpers/constants';
 
-interface SingleValueFormType {
+interface FormData {
   readonly emailAddress: string;
 }
 interface Props {
@@ -22,9 +22,9 @@ export const Introduction = ({ setStep }: Props) => {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
-  } = useForm<SingleValueFormType>();
+  } = useForm<FormData>();
 
-  const increaseStep = ({ emailAddress }: SingleValueFormType) => {
+  const increaseStep = ({ emailAddress }: FormData) => {
     console.log('emailAddress', emailAddress);
     setStep(StartRegistrationStep.EmailSent);
   };
@@ -59,6 +59,7 @@ export const Introduction = ({ setStep }: Props) => {
           />
           <FormErrorMessage>{errors.emailAddress && errors.emailAddress.message}</FormErrorMessage>
         </FormControl>
+
         <Button w="full" colorScheme="green" isLoading={isSubmitting} type="submit">
           Continue
         </Button>

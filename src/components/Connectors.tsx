@@ -20,7 +20,7 @@ import {
 import { GoogleColor, LinkedInColor, MetaMask } from '../assets';
 import { ConnectorNames } from '../helpers/constants';
 
-interface SingleValueFormType {
+interface FormData {
   readonly emailAddress: string;
 }
 
@@ -31,7 +31,7 @@ export const Connectors = () => {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
-  } = useForm<SingleValueFormType>();
+  } = useForm<FormData>();
 
   const connectWithWeb3Auth = (options?: OpenloginLoginParams) =>
     connect({ connector: Web3AuthConnectorInstance(sepolia, options) });
@@ -40,7 +40,7 @@ export const Connectors = () => {
 
   const loginWithLinkedIn = () => connectWithWeb3Auth({ loginProvider: 'linkedin' });
 
-  const loginWithEmail = ({ emailAddress }: SingleValueFormType) =>
+  const loginWithEmail = ({ emailAddress }: FormData) =>
     connectWithWeb3Auth({ loginProvider: 'email_passwordless', login_hint: emailAddress });
 
   const loginWithMetaMask = () => {
