@@ -1,5 +1,6 @@
 import { VStack } from '@chakra-ui/react';
 import { useState } from 'react';
+import { RegistrationStepper } from './RegistrationStepper';
 import { VerifyEmail } from './Steps/VerifyEmail';
 import { RegistrationData, RegistrationFlowStep } from '../../../helpers/constants';
 
@@ -25,7 +26,7 @@ export const RegistrationFlow = ({ id }: Props) => {
 
   return (
     <VStack pos="relative" justify="center" h="full">
-      {/* <RegistrationStepper step={step} /> */}
+      <RegistrationStepper step={step} />
       {content}
     </VStack>
   );
