@@ -33,14 +33,14 @@ const steps = [
 ];
 
 export const RegistrationStepper = ({ step }: Props) => {
-  const { activeStep } = useSteps({
+  const { activeStep, setActiveStep } = useSteps({
     index: step,
     count: steps.length,
   });
 
-  // useEffect(() => {
-  //   setActiveStep(step);
-  // }, [step]);
+  useEffect(() => {
+    setActiveStep(step);
+  }, [step, setActiveStep]);
 
   return (
     <Stepper

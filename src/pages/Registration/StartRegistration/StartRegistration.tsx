@@ -19,6 +19,7 @@ export const StartRegistration = () => {
         assertUnreachable(step);
     }
   };
+
   return (
     <VStack pos="relative" justify="center" h="full">
       <RegistrationStepper step={step} />
