@@ -33,14 +33,14 @@ const steps = [
 ];
 
 export const RegistrationStepper = ({ step }: Props) => {
-  const { activeStep, setActiveStep } = useSteps({
+  const { activeStep } = useSteps({
     index: step,
     count: steps.length,
   });
 
-  useEffect(() => {
-    setActiveStep(step);
-  }, [step]);
+  // useEffect(() => {
+  //   setActiveStep(step);
+  // }, [step]);
 
   return (
     <Stepper
@@ -52,13 +52,14 @@ export const RegistrationStepper = ({ step }: Props) => {
       gap="0"
       colorScheme="green">
       {steps.map((step, index) => (
-        <VStack align="flex-start">
-          <Step key={index} style={{ gap: 0, marginLeft: '1.5rem' }}>
+        <VStack key={index} align="flex-start">
+          <Step style={{ gap: 0, marginLeft: '1.5rem' }}>
             <StepIndicator>
               <StepStatus />
             </StepIndicator>
             <StepSeparator style={{ width: '10rem', marginLeft: 0, marginRight: '-1.5rem' }} />
           </Step>
+
           <Text>{step.title}</Text>
         </VStack>
       ))}
