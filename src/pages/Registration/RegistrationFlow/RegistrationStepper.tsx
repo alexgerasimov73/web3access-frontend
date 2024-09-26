@@ -23,7 +23,7 @@ const titleForStep = (step: RegistrationFlowStep) => {
     case RegistrationFlowStep.YourDetails:
       return 'Your Details';
     case RegistrationFlowStep.ConnectWallet:
-      return 'Connect Wallet';
+      return 'Confirmation Wallet';
     case RegistrationFlowStep.Documentation:
       return 'Documentation';
     case RegistrationFlowStep.KYCAML:

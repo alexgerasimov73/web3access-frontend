@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { RegistrationStepper } from './RegistrationStepper';
 import { VerifyEmail } from './Steps/VerifyEmail';
 import { Details } from './Steps/Details';
+import { ConfirmationWallet } from './Steps/ConfirmationWallet';
 import { RegistrationData, RegistrationFlowStep } from '../../../helpers/constants';
 
 interface Props {
@@ -23,6 +24,11 @@ export const RegistrationFlow = ({ id }: Props) => {
       return {
         step: RegistrationFlowStep.YourDetails,
         content: <Details data={registrationData} refreshData={setRegistrationData} />,
+      };
+    } else if (registrationData.onboardingStep === RegistrationFlowStep.ConnectWallet) {
+      return {
+        step: RegistrationFlowStep.ConnectWallet,
+        content: <ConfirmationWallet data={registrationData} refreshData={setRegistrationData} />,
       };
     }
 
