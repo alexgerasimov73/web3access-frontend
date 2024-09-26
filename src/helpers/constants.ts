@@ -20,17 +20,16 @@ export const enum RegistrationFlowStep {
 export type LoginOrRegistration = 'login' | 'registration';
 
 export interface RegistrationData {
-  readonly documentsSignedAt: string;
-  readonly claimedAt: string;
-  readonly claimToken: string;
+  readonly documentsSignedAt?: string;
   readonly emailAddress: string;
-  readonly ethAddress: string;
-  readonly firstName: string;
+  readonly ethAddress?: string;
+  readonly firstName?: string;
   readonly id: string;
-  readonly identityCheckStatus: boolean;
-  readonly lastName: string;
-  readonly linkedIn: string;
-  readonly onboardingStep: string;
-  readonly state: string;
-  readonly submittedAt: string;
+  readonly identityCheckStatus?: boolean;
+  readonly lastName?: string;
+  readonly linkedIn?: string;
+  readonly onboardingStep: RegistrationFlowStep;
+  readonly state?: string;
+  readonly submittedAt?: string;
+  readonly verificationToken: string;
 }

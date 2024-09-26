@@ -9,7 +9,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-import { RegistrationData } from '../../../../helpers/constants';
+import { RegistrationData, RegistrationFlowStep } from '../../../../helpers/constants';
 
 interface FormData {
   readonly verificationToken: string;
@@ -29,6 +29,15 @@ export const VerifyEmail = ({ id, refreshData }: Props) => {
 
   const handleFinish = ({ verificationToken }: FormData) => {
     console.log('verificationToken', verificationToken);
+
+    // TODO: Implement real logic.
+    const data = {
+      id,
+      verificationToken,
+      emailAddress: 'mail@mail.org',
+      onboardingStep: RegistrationFlowStep.YourDetails,
+    };
+    refreshData(data);
   };
 
   return (
