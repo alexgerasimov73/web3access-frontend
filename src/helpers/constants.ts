@@ -1,3 +1,5 @@
+import { Address } from 'viem';
+
 export const enum ConnectorNames {
   MetaMask = 'MetaMask',
   Web3Auth = 'Web3Auth',
@@ -22,7 +24,7 @@ export type LoginOrRegistration = 'login' | 'registration';
 export interface RegistrationData {
   readonly documentsSignedAt?: string;
   readonly emailAddress: string;
-  readonly ethAddress?: string;
+  readonly ethAddress?: Address;
   readonly firstName?: string;
   readonly id: string;
   readonly identityCheckStatus?: boolean;

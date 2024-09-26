@@ -4,6 +4,8 @@ import { RegistrationStepper } from './RegistrationStepper';
 import { VerifyEmail } from './Steps/VerifyEmail';
 import { Details } from './Steps/Details';
 import { ConfirmationWallet } from './Steps/ConfirmationWallet';
+import { Documentation } from './Steps/Documentation';
+import { isEthAddress } from '../../../helpers/utils';
 import { RegistrationData, RegistrationFlowStep } from '../../../helpers/constants';
 
 interface Props {
@@ -29,6 +31,21 @@ export const RegistrationFlow = ({ id }: Props) => {
       return {
         step: RegistrationFlowStep.ConnectWallet,
         content: <ConfirmationWallet data={registrationData} refreshData={setRegistrationData} />,
+      };
+    } else if (
+      registrationData.onboardingStep === RegistrationFlowStep.Documentation &&
+      registrationData.ethAddress &&
+      isEthAddress(registrationData.ethAddress)
+    ) {
+      return {
+        step: RegistrationFlowStep.Documentation,
+        content: (
+          <Documentation
+            address={registrationData.ethAddress}
+            data={registrationData}
+            refreshData={setRegistrationData}
+          />
+        ),
       };
     }
 

@@ -6,7 +6,7 @@ import { formatDateForSignature } from '../../../../helpers/utils';
 
 // TODO: Implement the request of settings.
 const confirmEthAddressTemplate =
-  'I, {{full_name}}, {{iso8601_timestamp}}, confirmed that I am going to use {{eth_address}} address at the web3Access platform.';
+  'I {{full_name}}, {{iso8601_timestamp}}, confirmed that I am going to use {{eth_address}} address at the web3Access platform.';
 
 interface Props {
   readonly data: RegistrationData;
@@ -19,7 +19,7 @@ export const ConfirmationWallet = ({ data, refreshData }: Props) => {
   const [isSigning, setIsSigning] = useState(false);
 
   const handleSubmit = () => {
-    if (!walletClient) return;
+    if (!walletClient || !address) return;
 
     setIsSigning(true);
 

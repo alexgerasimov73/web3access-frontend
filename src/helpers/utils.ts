@@ -1,3 +1,4 @@
+import { Address } from 'viem';
 import { MetaMask, Web3AuthLogo } from '../assets';
 import { ConnectorNames } from './constants';
 
@@ -18,3 +19,9 @@ export const logoFor = (attribute: string) => {
 
 // Returns a signed-plaintext-compatible string representation of the passed date.
 export const formatDateForSignature = (d: Date) => d.toISOString().split('.')[0] + 'Z';
+
+// Type guard on EthAddress.
+export const isEthAddress = (address: string): address is Address =>
+  address.startsWith('0x') && address.length === 42;
+
+export const shortenAddress = (address: Address) => `${address.substring(0, 8)}...`;
