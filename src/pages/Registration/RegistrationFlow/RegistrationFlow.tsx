@@ -5,6 +5,7 @@ import { VerifyEmail } from './Steps/VerifyEmail';
 import { Details } from './Steps/Details';
 import { ConfirmationWallet } from './Steps/ConfirmationWallet';
 import { Documentation } from './Steps/Documentation';
+import { KYCVerification } from './Steps/KYCVerification';
 import { isEthAddress } from '../../../helpers/utils';
 import { RegistrationData, RegistrationFlowStep } from '../../../helpers/constants';
 
@@ -46,6 +47,11 @@ export const RegistrationFlow = ({ id }: Props) => {
             refreshData={setRegistrationData}
           />
         ),
+      };
+    } else if (registrationData.onboardingStep === RegistrationFlowStep.KYCAML) {
+      return {
+        step: RegistrationFlowStep.KYCAML,
+        content: <KYCVerification data={registrationData} refreshData={setRegistrationData} />,
       };
     }
 

@@ -59,7 +59,7 @@ export const RegistrationStepper = ({ step }: Props) => {
       className="SlideFromTop"
       index={activeStep}
       pos="fixed"
-      top="10rem"
+      top="7rem"
       size="sm"
       gap="0"
       colorScheme="green">

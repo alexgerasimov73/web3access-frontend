@@ -50,7 +50,7 @@ export const ConfirmationWallet = ({ data, refreshData }: Props) => {
       className="RotationAnimation"
       direction="column"
       gap={10}
-      w={360}
+      w={480}
       p="48px 32px 56px"
       borderRadius={16}
       border="1px"
@@ -63,7 +63,7 @@ export const ConfirmationWallet = ({ data, refreshData }: Props) => {
 
       <FormControl mb="4">
         <FormLabel htmlFor="ethAddress">Address</FormLabel>
-        <Input id="ethAddress" placeholder="0xeDd48..." readOnly value={address} />
+        <Input id="ethAddress" placeholder="0xeDd48..." isDisabled value={address} />
       </FormControl>
 
       <Button w="full" colorScheme="green" isLoading={isSigning} onClick={handleSubmit}>

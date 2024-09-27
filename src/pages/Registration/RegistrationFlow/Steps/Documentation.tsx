@@ -8,7 +8,7 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 // TODO: Implement the request of settings.
 const licenseSigningTemplate =
-  'I {{full_name}}, {{iso8601_timestamp}}, confirmed that I have read and agree to the terms and conditions set out in the license agreement.';
+  'I, {{full_name}}, {{iso8601_timestamp}}, confirmed that I have read and agree to the terms and conditions set out in the licence agreement.';
 
 interface Props {
   readonly address: Address;
@@ -54,20 +54,20 @@ export const Documentation = ({ address, data, refreshData }: Props) => {
       className="RotationAnimation"
       direction="column"
       gap={10}
-      w={360}
+      w={480}
       p="48px 32px 56px"
       borderRadius={16}
       border="1px"
       borderColor="brand.800">
       <Heading as="h3" alignSelf="center" size="lg">
-        License Agreement
+        Licence Agreement
       </Heading>
 
-      <Text>Please read and sign the license agreement for using the platform:</Text>
+      <Text>Please read and sign the licence agreement for using the platform:</Text>
 
       <VStack align="flex-start">
         <Link href="" isExternal>
-          Open license agreement <ExternalLinkIcon mx="2px" />
+          Open licence agreement <ExternalLinkIcon mx="2px" />
         </Link>
 
         <Checkbox isChecked={isChecked} colorScheme="green" size="lg" onChange={handleChange}>
@@ -75,13 +75,13 @@ export const Documentation = ({ address, data, refreshData }: Props) => {
         </Checkbox>
       </VStack>
 
-      <Text>{`I ${data.firstName} ${data.lastName} have read and agree to the terms and conditions set out in the license agreement`}</Text>
+      <Text>{`I, ${data.firstName} ${data.lastName}, have read and agree to the terms and conditions set out in the licence agreement`}</Text>
 
       <Button
         w="full"
         colorScheme="green"
+        isDisabled={!isChecked}
         isLoading={isSigning}
-        disabled={!isChecked}
         onClick={handleSubmit}>
         Sign with {shortenAddress(address)}
       </Button>

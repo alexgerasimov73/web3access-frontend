@@ -45,7 +45,7 @@ export const Details = ({ data, refreshData }: Props) => {
       className="RotationAnimation"
       direction="column"
       gap={10}
-      w={360}
+      w={480}
       p="48px 32px 56px"
       borderRadius={16}
       border="1px"
