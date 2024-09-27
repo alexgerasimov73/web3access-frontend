@@ -6,6 +6,7 @@ import { Details } from './Steps/Details';
 import { ConfirmationWallet } from './Steps/ConfirmationWallet';
 import { Documentation } from './Steps/Documentation';
 import { KYCVerification } from './Steps/KYCVerification';
+import { Confirmation } from './Steps/Confirmation';
 import { isEthAddress } from '../../../helpers/utils';
 import { RegistrationData, RegistrationFlowStep } from '../../../helpers/constants';
 
@@ -52,6 +53,17 @@ export const RegistrationFlow = ({ id }: Props) => {
       return {
         step: RegistrationFlowStep.KYCAML,
         content: <KYCVerification data={registrationData} refreshData={setRegistrationData} />,
+      };
+    } else if (
+      registrationData.onboardingStep === RegistrationFlowStep.Confirmation &&
+      registrationData.firstName &&
+      registrationData.lastName
+    ) {
+      return {
+        step: RegistrationFlowStep.Confirmation,
+        content: (
+          <Confirmation fullName={`${registrationData.firstName} ${registrationData.lastName}`} />
+        ),
       };
     }
 
