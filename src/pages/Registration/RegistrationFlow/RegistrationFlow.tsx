@@ -1,6 +1,6 @@
 import { VStack } from '@chakra-ui/react';
 import { useState } from 'react';
-import { RegistrationStepper } from './RegistrationStepper';
+import { RegistrationStepper } from '../../../components/RegistrationStepper';
 import { VerifyEmail } from './Steps/VerifyEmail';
 import { Details } from './Steps/Details';
 import { ConfirmationWallet } from './Steps/ConfirmationWallet';
@@ -8,6 +8,7 @@ import { Documentation } from './Steps/Documentation';
 import { KYCVerification } from './Steps/KYCVerification';
 import { Confirmation } from './Steps/Confirmation';
 import { isEthAddress } from '../../../helpers/utils';
+import { stepsForRegistrationFlow } from '../utils';
 import { type RegistrationData, RegistrationFlowStep } from '../types';
 
 interface Props {
@@ -73,7 +74,7 @@ export const RegistrationFlow = ({ id }: Props) => {
 
   return (
     <VStack pos="relative" justify="center" h="full">
-      <RegistrationStepper step={step} />
+      <RegistrationStepper step={step} steps={stepsForRegistrationFlow} />
       {content}
     </VStack>
   );

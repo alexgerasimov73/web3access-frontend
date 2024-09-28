@@ -9,30 +9,16 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { useEffect } from 'react';
-import { assertUnreachable } from '../../../helpers/utils';
-import { StartRegistrationStep } from '../types';
+import { RegistrationFlowStep, StartRegistrationStep } from '../pages/Registration/types';
 
 interface Props {
-  readonly step: StartRegistrationStep;
+  readonly step: StartRegistrationStep | RegistrationFlowStep;
+  readonly steps: ReadonlyArray<{
+    title: string | undefined;
+  }>;
 }
 
-const titleForStep = (step: StartRegistrationStep) => {
-  switch (step) {
-    case StartRegistrationStep.Introduction:
-      return 'Introduction';
-    case StartRegistrationStep.EmailSent:
-      return 'Email Sent';
-    default:
-      assertUnreachable(step);
-  }
-};
-
-const steps = [
-  { title: titleForStep(StartRegistrationStep.Introduction) },
-  { title: titleForStep(StartRegistrationStep.EmailSent) },
-];
-
-export const RegistrationStepper = ({ step }: Props) => {
+export const RegistrationStepper = ({ step, steps }: Props) => {
   const { activeStep, setActiveStep } = useSteps({
     index: step,
     count: steps.length,

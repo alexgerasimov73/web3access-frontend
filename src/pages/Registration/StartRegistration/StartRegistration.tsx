@@ -2,8 +2,9 @@ import { VStack } from '@chakra-ui/react';
 import { useState } from 'react';
 import { EmailSent } from './Steps/EmailSent';
 import { Introduction } from './Steps/Introduction';
-import { RegistrationStepper } from './RegistrationStepper';
+import { RegistrationStepper } from '../../../components/RegistrationStepper';
 import { assertUnreachable } from '../../../helpers/utils';
+import { stepsForStartRegistration } from '../utils';
 import { StartRegistrationStep } from '../types';
 
 export const StartRegistration = () => {
@@ -22,7 +23,7 @@ export const StartRegistration = () => {
 
   return (
     <VStack pos="relative" justify="center" h="full">
-      <RegistrationStepper step={step} />
+      <RegistrationStepper step={step} steps={stepsForStartRegistration} />
       {renderStep()}
     </VStack>
   );
