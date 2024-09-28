@@ -1,13 +1,6 @@
-import {
-  Button,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Heading,
-  Input,
-} from '@chakra-ui/react';
+import { Button, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
+import { Card } from '../../../../components/Card';
 import { StartRegistrationStep } from '../../../../helpers/constants';
 
 interface FormData {
@@ -30,19 +23,7 @@ export const Introduction = ({ setStep }: Props) => {
   };
 
   return (
-    <Flex
-      className="RotationAnimation"
-      direction="column"
-      gap={10}
-      w={360}
-      p="48px 32px 56px"
-      borderRadius={16}
-      border="1px"
-      borderColor="brand.800">
-      <Heading as="h3" alignSelf="center" size="lg">
-        Your application to join
-      </Heading>
-
+    <Card title="Your application to join">
       <form onSubmit={handleSubmit(increaseStep)}>
         <FormControl mb="4" isInvalid={!!errors.emailAddress}>
           <FormLabel htmlFor="emailAddress">Email</FormLabel>
@@ -64,6 +45,6 @@ export const Introduction = ({ setStep }: Props) => {
           Continue
         </Button>
       </form>
-    </Flex>
+    </Card>
   );
 };

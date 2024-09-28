@@ -1,6 +1,7 @@
-import { Button, Flex, Heading, Link, Text } from '@chakra-ui/react';
-import { RegistrationData, RegistrationFlowStep } from '../../../../helpers/constants';
+import { Button, Link, Text } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { Card } from '../../../../components/Card';
+import { RegistrationData, RegistrationFlowStep } from '../../../../helpers/constants';
 
 interface Props {
   readonly data: RegistrationData;
@@ -18,19 +19,7 @@ export const KYCVerification = ({ data, refreshData }: Props) => {
   };
 
   return (
-    <Flex
-      className="RotationAnimation"
-      direction="column"
-      gap={10}
-      w={480}
-      p="48px 32px 56px"
-      borderRadius={16}
-      border="1px"
-      borderColor="brand.800">
-      <Heading as="h3" alignSelf="center" size="lg">
-        KYC/AML Verification
-      </Heading>
-
+    <Card title="KYC/AML Verification">
       <Text>
         <b>Important Notice:</b>
         <br />
@@ -58,6 +47,6 @@ export const KYCVerification = ({ data, refreshData }: Props) => {
       <Button w="full" colorScheme="green" onClick={onContinue}>
         Continue
       </Button>
-    </Flex>
+    </Card>
   );
 };

@@ -1,10 +1,11 @@
-import { Button, Checkbox, Flex, Heading, Link, Text, VStack } from '@chakra-ui/react';
+import { Button, Checkbox, Link, Text, VStack } from '@chakra-ui/react';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { useWalletClient } from 'wagmi';
 import { Address } from 'viem';
 import { ChangeEvent, useState } from 'react';
+import { Card } from '../../../../components/Card';
 import { formatDateForSignature, shortenAddress } from '../../../../helpers/utils';
 import { RegistrationData, RegistrationFlowStep } from '../../../../helpers/constants';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 // TODO: Implement the request of settings.
 const licenseSigningTemplate =
@@ -50,19 +51,7 @@ export const Documentation = ({ address, data, refreshData }: Props) => {
   };
 
   return (
-    <Flex
-      className="RotationAnimation"
-      direction="column"
-      gap={10}
-      w={480}
-      p="48px 32px 56px"
-      borderRadius={16}
-      border="1px"
-      borderColor="brand.800">
-      <Heading as="h3" alignSelf="center" size="lg">
-        Licence Agreement
-      </Heading>
-
+    <Card title="Licence Agreement">
       <Text>Please read and sign the licence agreement for using the platform:</Text>
 
       <VStack align="flex-start">
@@ -85,6 +74,6 @@ export const Documentation = ({ address, data, refreshData }: Props) => {
         onClick={handleSubmit}>
         Sign with {shortenAddress(address)}
       </Button>
-    </Flex>
+    </Card>
   );
 };

@@ -1,6 +1,7 @@
-import { Button, Flex, FormControl, FormLabel, Heading, Input, Text } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, Input, Text } from '@chakra-ui/react';
 import { useAccount, useWalletClient } from 'wagmi';
 import { useState } from 'react';
+import { Card } from '../../../../components/Card';
 import { RegistrationData, RegistrationFlowStep } from '../../../../helpers/constants';
 import { formatDateForSignature } from '../../../../helpers/utils';
 
@@ -46,29 +47,17 @@ export const ConfirmationWallet = ({ data, refreshData }: Props) => {
   };
 
   return (
-    <Flex
-      className="RotationAnimation"
-      direction="column"
-      gap={10}
-      w={480}
-      p="48px 32px 56px"
-      borderRadius={16}
-      border="1px"
-      borderColor="brand.800">
-      <Heading as="h3" alignSelf="center" size="lg">
-        Wallet address
-      </Heading>
-
+    <Card title="Wallet address">
       <Text>You will need a digital wallet address to gain access to the platform.</Text>
 
       <FormControl mb="4">
         <FormLabel htmlFor="ethAddress">Address</FormLabel>
-        <Input id="ethAddress" placeholder="0xeDd48..." isDisabled value={address} />
+        <Input id="ethAddress" isDisabled value={address} />
       </FormControl>
 
       <Button w="full" colorScheme="green" isLoading={isSigning} onClick={handleSubmit}>
         Confirm Address
       </Button>
-    </Flex>
+    </Card>
   );
 };

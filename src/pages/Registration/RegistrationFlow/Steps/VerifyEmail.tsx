@@ -1,14 +1,6 @@
-import {
-  Button,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Heading,
-  Input,
-  Text,
-} from '@chakra-ui/react';
+import { Button, FormControl, FormErrorMessage, FormLabel, Input, Text } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
+import { Card } from '../../../../components/Card';
 import { RegistrationData, RegistrationFlowStep } from '../../../../helpers/constants';
 
 interface FormData {
@@ -41,19 +33,7 @@ export const VerifyEmail = ({ id, refreshData }: Props) => {
   };
 
   return (
-    <Flex
-      className="RotationAnimation"
-      direction="column"
-      gap={10}
-      w={480}
-      p="48px 32px 56px"
-      borderRadius={16}
-      border="1px"
-      borderColor="brand.800">
-      <Heading as="h3" alignSelf="center" size="lg">
-        Verify your email
-      </Heading>
-
+    <Card title="Verify your email">
       <Text>We have sent a verification code to your email address.</Text>
 
       <form onSubmit={handleSubmit(handleFinish)}>
@@ -83,6 +63,6 @@ export const VerifyEmail = ({ id, refreshData }: Props) => {
           Submit
         </Button>
       </form>
-    </Flex>
+    </Card>
   );
 };
