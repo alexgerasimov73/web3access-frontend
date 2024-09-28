@@ -1,14 +1,9 @@
 import { Button, Link, Text } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Card } from '../../../../components/Card';
-import { RegistrationData, RegistrationFlowStep } from '../../../../helpers/constants';
+import { RegistrationFlowStep, type StepProps } from '../../types';
 
-interface Props {
-  readonly data: RegistrationData;
-  readonly refreshData: (data: RegistrationData) => void;
-}
-
-export const KYCVerification = ({ data, refreshData }: Props) => {
+export const KYCVerification = ({ data, refreshData }: StepProps) => {
   const onContinue = () => {
     const newData = {
       ...data,

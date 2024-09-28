@@ -8,12 +8,12 @@ import {
   useSteps,
   VStack,
 } from '@chakra-ui/react';
-import { RegistrationFlowStep, StartRegistrationStep } from '../../../helpers/constants';
-import { assertUnreachable } from '../../../helpers/utils';
 import { useEffect } from 'react';
+import { assertUnreachable } from '../../../helpers/utils';
+import { RegistrationFlowStep } from '../types';
 
 interface Props {
-  readonly step: StartRegistrationStep;
+  readonly step: RegistrationFlowStep;
 }
 
 const titleForStep = (step: RegistrationFlowStep) => {

@@ -8,9 +8,9 @@ import {
   useSteps,
   VStack,
 } from '@chakra-ui/react';
-import { StartRegistrationStep } from '../../../helpers/constants';
-import { assertUnreachable } from '../../../helpers/utils';
 import { useEffect } from 'react';
+import { assertUnreachable } from '../../../helpers/utils';
+import { StartRegistrationStep } from '../types';
 
 interface Props {
   readonly step: StartRegistrationStep;
@@ -47,7 +47,7 @@ export const RegistrationStepper = ({ step }: Props) => {
       className="SlideFromTop"
       index={activeStep}
       pos="fixed"
-      top="10rem"
+      top="7rem"
       size="sm"
       gap="0"
       colorScheme="green">

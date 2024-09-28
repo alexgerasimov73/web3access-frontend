@@ -5,16 +5,14 @@ import { Address } from 'viem';
 import { ChangeEvent, useState } from 'react';
 import { Card } from '../../../../components/Card';
 import { formatDateForSignature, shortenAddress } from '../../../../helpers/utils';
-import { RegistrationData, RegistrationFlowStep } from '../../../../helpers/constants';
+import { RegistrationFlowStep, type StepProps } from '../../types';
 
 // TODO: Implement the request of settings.
 const licenseSigningTemplate =
   'I, {{full_name}}, {{iso8601_timestamp}}, confirmed that I have read and agree to the terms and conditions set out in the licence agreement.';
 
-interface Props {
+interface Props extends StepProps {
   readonly address: Address;
-  readonly data: RegistrationData;
-  readonly refreshData: (data: RegistrationData) => void;
 }
 
 export const Documentation = ({ address, data, refreshData }: Props) => {

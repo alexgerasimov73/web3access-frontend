@@ -1,7 +1,7 @@
 import { Button, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { Card } from '../../../../components/Card';
-import { RegistrationData, RegistrationFlowStep } from '../../../../helpers/constants';
+import { RegistrationFlowStep, type StepProps } from '../../types';
 
 interface FormData {
   readonly firstName: string;
@@ -9,12 +9,7 @@ interface FormData {
   readonly linkedIn?: string;
 }
 
-interface Props {
-  readonly data: RegistrationData;
-  readonly refreshData: (data: RegistrationData) => void;
-}
-
-export const Details = ({ data, refreshData }: Props) => {
+export const Details = ({ data, refreshData }: StepProps) => {
   const {
     handleSubmit,
     register,

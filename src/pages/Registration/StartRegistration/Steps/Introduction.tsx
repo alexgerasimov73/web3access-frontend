@@ -1,7 +1,7 @@
 import { Button, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { Card } from '../../../../components/Card';
-import { StartRegistrationStep } from '../../../../helpers/constants';
+import { StartRegistrationStep } from '../../types';
 
 interface FormData {
   readonly emailAddress: string;

@@ -2,19 +2,14 @@ import { Button, FormControl, FormLabel, Input, Text } from '@chakra-ui/react';
 import { useAccount, useWalletClient } from 'wagmi';
 import { useState } from 'react';
 import { Card } from '../../../../components/Card';
-import { RegistrationData, RegistrationFlowStep } from '../../../../helpers/constants';
 import { formatDateForSignature } from '../../../../helpers/utils';
+import { RegistrationFlowStep, type StepProps } from '../../types';
 
 // TODO: Implement the request of settings.
 const confirmEthAddressTemplate =
   'I {{full_name}}, {{iso8601_timestamp}}, confirmed that I am going to use {{eth_address}} address at the web3Access platform.';
 
-interface Props {
-  readonly data: RegistrationData;
-  readonly refreshData: (data: RegistrationData) => void;
-}
-
-export const ConfirmationWallet = ({ data, refreshData }: Props) => {
+export const ConfirmationWallet = ({ data, refreshData }: StepProps) => {
   const { address } = useAccount();
   const { data: walletClient } = useWalletClient();
   const [isSigning, setIsSigning] = useState(false);

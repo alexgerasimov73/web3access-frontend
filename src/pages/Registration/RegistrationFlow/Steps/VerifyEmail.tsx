@@ -1,15 +1,14 @@
 import { Button, FormControl, FormErrorMessage, FormLabel, Input, Text } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { Card } from '../../../../components/Card';
-import { RegistrationData, RegistrationFlowStep } from '../../../../helpers/constants';
+import { RegistrationFlowStep, type StepProps } from '../../types';
 
 interface FormData {
   readonly verificationToken: string;
 }
 
-interface Props {
+interface Props extends Omit<StepProps, 'data'> {
   readonly id: string;
-  readonly refreshData: (data: RegistrationData) => void;
 }
 
 export const VerifyEmail = ({ id, refreshData }: Props) => {

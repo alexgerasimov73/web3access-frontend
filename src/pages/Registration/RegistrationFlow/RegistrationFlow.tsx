@@ -8,7 +8,7 @@ import { Documentation } from './Steps/Documentation';
 import { KYCVerification } from './Steps/KYCVerification';
 import { Confirmation } from './Steps/Confirmation';
 import { isEthAddress } from '../../../helpers/utils';
-import { RegistrationData, RegistrationFlowStep } from '../../../helpers/constants';
+import { type RegistrationData, RegistrationFlowStep } from '../types';
 
 interface Props {
   readonly id: string;
@@ -16,7 +16,6 @@ interface Props {
 
 export const RegistrationFlow = ({ id }: Props) => {
   const [registrationData, setRegistrationData] = useState<RegistrationData>();
-  console.log('registrationData', registrationData);
 
   const getStepAndContent = () => {
     if (!registrationData) {
