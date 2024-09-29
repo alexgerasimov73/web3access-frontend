@@ -7,7 +7,7 @@ import { assertUnreachable } from '../../../helpers/utils';
 import { stepsForStartRegistration } from '../utils';
 import { StartRegistrationStep } from '../types';
 
-export const StartRegistration = () => {
+const StartRegistration = () => {
   const [step, setStep] = useState(StartRegistrationStep.Introduction);
 
   const renderStep = () => {
@@ -28,3 +28,5 @@ export const StartRegistration = () => {
     </VStack>
   );
 };
+
+export default StartRegistration;

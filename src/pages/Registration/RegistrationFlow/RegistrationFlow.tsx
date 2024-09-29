@@ -15,7 +15,7 @@ interface Props {
   readonly id: string;
 }
 
-export const RegistrationFlow = ({ id }: Props) => {
+const RegistrationFlow = ({ id }: Props) => {
   const [registrationData, setRegistrationData] = useState<RegistrationData>();
 
   const getStepAndContent = () => {
@@ -79,3 +79,5 @@ export const RegistrationFlow = ({ id }: Props) => {
     </VStack>
   );
 };
+
+export default RegistrationFlow;

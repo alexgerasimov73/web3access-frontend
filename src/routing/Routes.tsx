@@ -1,19 +1,23 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
-import { Home } from '../pages/Home/Home';
+import { Suspense } from 'react';
 import { ProtectedRoute } from './guard/index';
-import { WalletBadge } from '../components/WalletBadge';
-import { Registration } from '../pages/Registration/Registration';
+import { Loader } from '../components/Loader';
+import { lazyLoad } from '../helpers/utils';
+
+const WalletBadge = lazyLoad('../components/WalletBadge', 'WalletBadge');
+const Registration = lazyLoad('../pages/Registration/Registration', 'Registration');
+const Home = lazyLoad('../pages/Home/Home', 'Home');
 
 export const router = createBrowserRouter(
-  //   [
-  //   {
-  //     path: '/',
-  //     element: <Home />,
-  //   },
-  // ]
   createRoutesFromElements(
     <Route element={<ProtectedRoute.ConnectedWallet />}>
-      <Route path="/" element={<WalletBadge />}>
+      <Route
+        path="/"
+        element={
+          <Suspense fallback={<Loader />}>
+            <WalletBadge />
+          </Suspense>
+        }>
         <Route path="registration" element={<Registration />} />
         <Route element={<ProtectedRoute.AuthenticatedAndIdentified />}>
           <Route index element={<Home />} />
