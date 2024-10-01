@@ -19,7 +19,7 @@ export const Confirmation = ({ fullName }: Props) => (
     <Text fontWeight="bold">Click the button below to get started!</Text>
 
     <Button size="lg" colorScheme="green">
-      <Link to="/dashboard">To dashboard</Link>
+      <Link to="/">To dashboard</Link>
     </Button>
   </Card>
 );

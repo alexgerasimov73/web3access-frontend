@@ -6,7 +6,7 @@ import { lazyLoad } from '../helpers/utils';
 
 const WalletBadge = lazyLoad('../components/WalletBadge', 'WalletBadge');
 const Registration = lazyLoad('../pages/Registration/Registration', 'Registration');
-const Home = lazyLoad('../pages/Home/Home', 'Home');
+const Dashboard = lazyLoad('../pages/Dashboard/Dashboard', 'Dashboard');
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,7 +20,7 @@ export const router = createBrowserRouter(
         }>
         <Route path="registration" element={<Registration />} />
         <Route element={<ProtectedRoute.AuthenticatedAndIdentified />}>
-          <Route index element={<Home />} />
+          <Route index element={<Dashboard />} />
         </Route>
       </Route>
     </Route>,

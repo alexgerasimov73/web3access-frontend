@@ -7,7 +7,7 @@ import { RegistrationFlowStep, type StepProps } from '../../types';
 
 // TODO: Implement the request of settings.
 const confirmEthAddressTemplate =
-  'I {{full_name}}, {{iso8601_timestamp}}, confirmed that I am going to use {{eth_address}} address at the web3Access platform.';
+  'I, {{full_name}}, {{iso8601_timestamp}}, confirmed that I am going to use {{eth_address}} address at the web3Access platform.';
 
 export const ConfirmationWallet = ({ data, refreshData }: StepProps) => {
   const { address } = useAccount();
