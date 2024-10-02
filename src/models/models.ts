@@ -11,11 +11,5 @@ export interface IAuthResponse {
 }
 
 export interface ISettings {
-  readonly settings: string;
-  readonly chain: {
-    readonly chainId: string;
-  };
-  readonly core: {
-    readonly signInSignatureTemplate: string;
-  };
+  readonly logInSignatureTemplate: string;
 }

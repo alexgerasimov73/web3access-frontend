@@ -11,6 +11,8 @@ import {
   useDisclosure,
   VStack,
 } from '@chakra-ui/react';
+import { useEffect } from 'react';
+import { store } from '../store/store';
 import { AvocadoAvatar, Wallet } from '../assets';
 import { logoFor } from '../helpers/utils';
 
@@ -18,6 +20,10 @@ export const WalletBadge = () => {
   const { address, chain, connector } = useAccount();
   const { disconnect } = useDisconnect();
   const { isOpen, onClose, onOpen } = useDisclosure();
+
+  useEffect(() => {
+    store.getSettings();
+  }, []);
 
   const handleDisconnect = () => disconnect();
 
