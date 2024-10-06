@@ -38,7 +38,7 @@ Coming soon...
 First, clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/alexgerasimov73/Web3Access-frontend.git
+git clone https://github.com/alexgerasimov73/web3access-frontend.git
 ```
 
 ```bash

@@ -4,27 +4,22 @@ import { useState } from 'react';
 import { store } from '../store/store';
 import { formatDateForSignature } from '../helpers/utils';
 
-// TODO: Implement the request of settings.
-const signInSignatureTemplate = '{{chain_id}}:{{iso8601_timestamp}}:{{realm}}:CX_Authentication';
-const signatureRealm = 'Staging';
-
 export const Login = () => {
   const { chainId } = useAccount();
   const { data: walletClient } = useWalletClient();
   const [isSigning, setIsSigning] = useState(false);
 
   const handleLogin = () => {
-    if (store.user || !walletClient) return;
+    if (!store.settings || store.user || !walletClient) return;
 
     setIsSigning(true);
 
     // Request to sign our digest.
     const transmittedAt = formatDateForSignature(new Date(Date.now()));
-    console.log('transmittedAt', transmittedAt);
-    const digest = signInSignatureTemplate
+    const digest = store.settings.logInSignatureTemplate
       .replace('{{chain_id}}', `${chainId}`)
       .replace('{{iso8601_timestamp}}', transmittedAt)
-      .replace('{{realm}}', signatureRealm);
+      .replace('{{realm}}', store.settings.signatureRealm);
 
     walletClient
       .signMessage({ message: digest })
