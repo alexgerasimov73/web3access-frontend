@@ -12,6 +12,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { useEffect } from 'react';
+import { Loader } from './Loader';
 import { store } from '../store/store';
 import { AvocadoAvatar, Wallet } from '../assets';
 import { logoFor } from '../helpers/utils';
@@ -26,6 +27,8 @@ export const WalletBadge = () => {
   }, []);
 
   const handleDisconnect = () => disconnect();
+
+  if (store.isLoading) return <Loader label="Loading settings..." />;
 
   return (
     <>

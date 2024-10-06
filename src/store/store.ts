@@ -2,6 +2,7 @@ import axios from 'axios';
 import { makeAutoObservable } from 'mobx';
 import type { IAuthResponse, ISettings, IUser } from '../models/models';
 import { login, logout, registration } from '../services/AuthService';
+import { getSettings } from '../services/UserService';
 
 class Store {
   user: IUser | null = null;
@@ -82,10 +83,8 @@ class Store {
     this.setIsLoading(true);
     try {
       // TODO: Implement this request.
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/settings`, {
-        withCredentials: true,
-      });
-      this.setSettings(response.data.settings);
+      const response = await getSettings();
+      this.setSettings(response.data);
     } catch (error) {
       console.error(error);
     } finally {

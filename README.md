@@ -1,3 +1,5 @@
+# ⚠️ 🚧 🏗️ WIP
+
 # Web3Access
 
 **Web3Access** is a Web3 project showcasing user authentication, onboarding, and wallet connection.
@@ -66,7 +68,9 @@ Coming soon...
 ## Future Enhancements
 
 - **Blockchain Interaction**: Integration with blockchain for real-time data or contract interaction.
-- **KYC/AML Integration**: Although not implemented, the onboarding process includes information on how to handle KYC/AML with recommended tools like [Onfido](https://onfido.com/)
+- **KYC/AML Integration**: Although not implemented, the onboarding process includes information on how to handle KYC/AML with recommended tools like [Onfido](https://onfido.com/).
+- **Refactoring the code base**: It needs to get rid of TODO's, optimize, and refactor code out where it's necessary.
+- **Test covering**: The application will be covered with tests.
 
 ## Contributing
 
