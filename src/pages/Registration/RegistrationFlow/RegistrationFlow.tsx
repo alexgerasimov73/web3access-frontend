@@ -9,14 +9,14 @@ import { KYCVerification } from './Steps/KYCVerification';
 import { Confirmation } from './Steps/Confirmation';
 import { isEthAddress } from '../../../helpers/utils';
 import { stepsForRegistrationFlow } from '../utils';
-import { type RegistrationData, RegistrationFlowStep } from '../types';
+import { type IRegistrationResponse, RegistrationFlowStep } from '../types';
 
 interface Props {
   readonly id: string;
 }
 
 const RegistrationFlow = ({ id }: Props) => {
-  const [registrationData, setRegistrationData] = useState<RegistrationData>();
+  const [registrationData, setRegistrationData] = useState<IRegistrationResponse>();
 
   const getStepAndContent = () => {
     if (!registrationData) {

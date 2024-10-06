@@ -21,7 +21,7 @@ Future enhancements may include additional functionality interacting with blockc
 - **Authentication**: [Web3Auth](https://web3auth.io/)
 - **Wallet Connection**: [Wagmi](https://wagmi.sh/)
 - **UI Components**: [Chakra UI](https://chakra-ui.com/)
-- **Data Fetching**: [React Query](https://tanstack.com/query/v4)
+- **Data Fetching**: [React TanStack Query](https://tanstack.com/query/v4)
 - **State Management**: [MobX](https://mobx.js.org/README.html)
 
 ## Demo

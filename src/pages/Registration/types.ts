@@ -16,7 +16,7 @@ export const enum RegistrationFlowStep {
 
 export type LoginOrRegistration = 'login' | 'registration';
 
-export interface RegistrationData {
+export interface IRegistrationResponse {
   readonly documentsSignedAt?: string;
   readonly emailAddress: string;
   readonly ethAddress?: Address;
@@ -32,6 +32,6 @@ export interface RegistrationData {
 }
 
 export interface StepProps {
-  readonly data: RegistrationData;
-  readonly refreshData: (data: RegistrationData) => void;
+  readonly data: IRegistrationResponse;
+  readonly refreshData: (data: IRegistrationResponse) => void;
 }

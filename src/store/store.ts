@@ -3,11 +3,14 @@ import { makeAutoObservable } from 'mobx';
 import type { IAuthResponse, ISettings, IUser } from '../models/models';
 import { login, logout, registration } from '../services/AuthService';
 import { getSettings } from '../services/UserService';
+import { startRegistration } from '../services/RegistrationService';
+import type { IRegistrationResponse } from '../pages/Registration/types';
 
 class Store {
   user: IUser | null = null;
   isAuth = false;
   isLoading = false;
+  registrationData: IRegistrationResponse | null = null;
   settings: ISettings | null = null;
 
   constructor() {
@@ -28,6 +31,10 @@ class Store {
 
   setSettings(settings: ISettings) {
     this.settings = settings;
+  }
+
+  setRegistrationData(registrationData: IRegistrationResponse) {
+    this.registrationData = registrationData;
   }
 
   private handleAuthSuccess(accessToken: string, user: IUser) {
@@ -82,13 +89,22 @@ class Store {
   async getSettings() {
     this.setIsLoading(true);
     try {
-      // TODO: Implement this request.
       const response = await getSettings();
       this.setSettings(response.data);
     } catch (error) {
       console.error(error);
     } finally {
       this.setIsLoading(false);
+    }
+  }
+
+  // TODO: Rewrite to leverage the tanstack query.
+  async startRegistration(email: string) {
+    try {
+      const response = await startRegistration(email);
+      this.setRegistrationData(response.data);
+    } catch (error) {
+      console.error(error);
     }
   }
 }

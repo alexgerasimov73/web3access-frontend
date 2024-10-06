@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { store } from '../../store/store';
 import { LoginForm } from '../../components/LoginForm';
 
+// TODO: Remove this component.
 export const Home = observer(() => {
   useEffect(() => {
     if (localStorage.getItem('token')) {

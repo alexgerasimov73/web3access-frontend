@@ -1,6 +1,7 @@
 import { Button, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { Card } from '../../../../components/Card';
+import { store } from '../../../../store/store';
 import { StartRegistrationStep } from '../../types';
 
 interface FormData {
@@ -18,7 +19,7 @@ export const Introduction = ({ setStep }: Props) => {
   } = useForm<FormData>();
 
   const increaseStep = ({ emailAddress }: FormData) => {
-    console.log('emailAddress', emailAddress);
+    store.startRegistration(emailAddress);
     setStep(StartRegistrationStep.EmailSent);
   };
 

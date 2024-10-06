@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { store } from '../store/store';
 
+// TODO: Remove this component.
 export const LoginForm = observer(() => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
