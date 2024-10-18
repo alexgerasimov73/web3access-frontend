@@ -18,7 +18,7 @@ export const Confirmation = ({ fullName }: Props) => (
     </Text>
     <Text fontWeight="bold">Click the button below to get started!</Text>
 
-    <Button size="lg" colorScheme="green">
+    <Button size="lg">
       <Link to="/">To dashboard</Link>
     </Button>
   </Card>

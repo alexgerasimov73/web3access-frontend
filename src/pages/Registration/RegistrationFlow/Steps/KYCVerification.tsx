@@ -39,7 +39,7 @@ export const KYCVerification = ({ data, refreshData }: StepProps) => {
         .
       </Text>
 
-      <Button w="full" colorScheme="green" onClick={onContinue}>
+      <Button w="full" onClick={onContinue}>
         Continue
       </Button>
     </Card>

@@ -58,7 +58,7 @@ export const VerifyEmail = ({ id, refreshData }: Props) => {
           </FormErrorMessage>
         </FormControl>
 
-        <Button w="full" colorScheme="green" isLoading={isSubmitting} type="submit">
+        <Button w="full" isLoading={isSubmitting} type="submit">
           Submit
         </Button>
       </form>

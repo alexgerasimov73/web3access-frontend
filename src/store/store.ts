@@ -3,7 +3,7 @@ import { makeAutoObservable } from 'mobx';
 import type { IAuthResponse, ISettings, IUser } from '../models/models';
 import { login, logout, registration } from '../services/AuthService';
 import { getSettings } from '../services/UserService';
-import { startRegistration } from '../services/RegistrationService';
+import { startRegistrationService } from '../services/RegistrationService';
 import type { IRegistrationResponse } from '../pages/Registration/types';
 
 class Store {
@@ -101,7 +101,7 @@ class Store {
   // TODO: Rewrite to leverage the tanstack query.
   async startRegistration(email: string) {
     try {
-      const response = await startRegistration(email);
+      const response = await startRegistrationService(email);
       this.setRegistrationData(response.data);
     } catch (error) {
       console.error(error);

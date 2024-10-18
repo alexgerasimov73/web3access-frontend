@@ -1,8 +1,13 @@
-import type { AxiosResponse } from 'axios';
-import api from '../interceptors';
+import axios, { type AxiosResponse } from 'axios';
 import type { IRegistrationResponse } from '../pages/Registration/types';
 
-export const startRegistration = async (
+export const startRegistrationService = async (
   email: string,
 ): Promise<AxiosResponse<IRegistrationResponse>> =>
-  api.post<IRegistrationResponse>('start-registration', { email });
+  axios.post<IRegistrationResponse>(
+    `${import.meta.env.VITE_API_URL}/start-registration`,
+    { email },
+    {
+      withCredentials: true,
+    },
+  );

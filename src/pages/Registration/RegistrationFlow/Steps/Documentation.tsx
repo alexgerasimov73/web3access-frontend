@@ -57,19 +57,14 @@ export const Documentation = ({ address, data, refreshData }: Props) => {
           Open licence agreement <ExternalLinkIcon mx="2px" />
         </Link>
 
-        <Checkbox isChecked={isChecked} colorScheme="green" size="lg" onChange={handleChange}>
+        <Checkbox isChecked={isChecked} size="lg" onChange={handleChange}>
           Accept
         </Checkbox>
       </VStack>
 
       <Text>{`I, ${data.firstName} ${data.lastName}, have read and agree to the terms and conditions set out in the licence agreement`}</Text>
 
-      <Button
-        w="full"
-        colorScheme="green"
-        isDisabled={!isChecked}
-        isLoading={isSigning}
-        onClick={handleSubmit}>
+      <Button w="full" isDisabled={!isChecked} isLoading={isSigning} onClick={handleSubmit}>
         Sign with {shortenAddress(address)}
       </Button>
     </Card>

@@ -42,7 +42,7 @@ export const Introduction = ({ setStep }: Props) => {
           <FormErrorMessage>{errors.emailAddress && errors.emailAddress.message}</FormErrorMessage>
         </FormControl>
 
-        <Button w="full" colorScheme="green" isLoading={isSubmitting} type="submit">
+        <Button w="full" isLoading={isSubmitting} type="submit">
           Continue
         </Button>
       </form>

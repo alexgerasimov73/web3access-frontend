@@ -32,7 +32,7 @@ export const Login = () => {
   };
 
   return (
-    <Button disabled={isSigning} size="lg" colorScheme="green" onClick={handleLogin}>
+    <Button disabled={isSigning} size="lg" onClick={handleLogin}>
       Login
     </Button>
   );

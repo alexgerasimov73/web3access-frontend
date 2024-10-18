@@ -50,7 +50,7 @@ export const ConfirmationWallet = ({ data, refreshData }: StepProps) => {
         <Input id="ethAddress" isDisabled value={address} />
       </FormControl>
 
-      <Button w="full" colorScheme="green" isLoading={isSigning} onClick={handleSubmit}>
+      <Button w="full" isLoading={isSigning} onClick={handleSubmit}>
         Confirm Address
       </Button>
     </Card>

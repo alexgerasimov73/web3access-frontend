@@ -75,7 +75,7 @@ export const Connectors = () => {
           <Image boxSize="18px" src={GoogleColor} />
           Google
         </Button>
-        <Button gap={2} w="47%" colorScheme="green" onClick={loginWithLinkedIn}>
+        <Button gap={2} w="47%" onClick={loginWithLinkedIn}>
           <Image boxSize="18px" src={LinkedInColor} />
           LinkedIn
         </Button>
@@ -106,7 +106,7 @@ export const Connectors = () => {
         <Text mb="2" align="center">
           External wallet
         </Text>
-        <Button gap={2} w="full" colorScheme="green" onClick={loginWithMetaMask}>
+        <Button gap={2} w="full" onClick={loginWithMetaMask}>
           <Image boxSize="18px" src={MetaMask} />
           Connect with MetaMask
         </Button>

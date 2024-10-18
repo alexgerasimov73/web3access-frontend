@@ -71,7 +71,7 @@ export const Details = ({ data, refreshData }: StepProps) => {
           <FormErrorMessage>{errors.linkedIn && errors.linkedIn.message}</FormErrorMessage>
         </FormControl>
 
-        <Button w="full" colorScheme="green" isLoading={isSubmitting} type="submit">
+        <Button w="full" isLoading={isSubmitting} type="submit">
           Continue
         </Button>
       </form>

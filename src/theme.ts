@@ -1,7 +1,7 @@
-import { extendTheme, type ThemeConfig } from '@chakra-ui/react';
+import { extendTheme, withDefaultColorScheme, type ThemeConfig } from '@chakra-ui/react';
 
 const config: ThemeConfig = {
-  initialColorMode: 'dark',
+  initialColorMode: 'light',
   useSystemColorMode: false,
 };
 
@@ -17,38 +17,44 @@ const inputSelectStyles = {
   },
 };
 
-const theme = extendTheme({
-  config,
-  colors: {
-    brand: {
-      900: '#0b0b0b',
-      800: '#25ffa3',
-      700: '#f07300',
-      600: '#0927f1',
-      500: '#dddddd',
-      400: '#ffffff',
-    },
-  },
-  fonts: {
-    heading: '"Darker Grotesque", "Avenir", "Helvetica", "Arial", sans-serif',
-    body: '"Darker Grotesque", "Avenir", "Helvetica", "Arial", sans-serif',
-  },
-  shadows: {
-    outline: '0 0 0 3px rgba(240, 115, 0, 0.6)',
-  },
-  styles: {
-    global: {
-      body: {
-        bg: 'brand.900',
-        color: 'brand.400',
-        fontSize: 'lg',
+const theme = extendTheme(
+  {
+    config,
+    colors: {
+      brand: {
+        900: '#0b0b0b',
+        800: '#25ffa3',
+        700: '#f07300',
+        600: '#0927f1',
+        500: '#dddddd',
+        400: '#ffffff',
       },
     },
+    fonts: {
+      heading: '"Darker Grotesque", "Avenir", "Helvetica", "Arial", sans-serif',
+      body: '"Darker Grotesque", "Avenir", "Helvetica", "Arial", sans-serif',
+    },
+    shadows: {
+      outline: '0 0 0 3px rgba(240, 115, 0, 0.6)',
+    },
+    styles: {
+      global: {
+        body: {
+          bg: 'brand.900',
+          color: 'brand.400',
+          fontSize: 'lg',
+        },
+      },
+    },
+    components: {
+      Input: { ...inputSelectStyles },
+      Select: { ...inputSelectStyles },
+    },
   },
-  components: {
-    Input: { ...inputSelectStyles },
-    Select: { ...inputSelectStyles },
-  },
-});
+  withDefaultColorScheme({
+    colorScheme: 'green',
+    components: ['Button', 'Checkbox', 'Stepper'],
+  }),
+);
 
 export default theme;

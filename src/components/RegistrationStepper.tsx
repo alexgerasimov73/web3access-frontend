@@ -29,14 +29,7 @@ export const RegistrationStepper = ({ step, steps }: Props) => {
   }, [step, setActiveStep]);
 
   return (
-    <Stepper
-      className="SlideFromTop"
-      index={activeStep}
-      pos="fixed"
-      top="7rem"
-      size="sm"
-      gap="0"
-      colorScheme="green">
+    <Stepper className="SlideFromTop" index={activeStep} pos="fixed" top="7rem" size="sm" gap="0">
       {steps.map((step, index) => (
         <VStack key={index} align="flex-start">
           <Step style={{ gap: 0, marginLeft: '1.5rem' }}>
