@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { makeAutoObservable } from 'mobx';
 import type { IAuthResponse, ISettings, IUser } from '../models/models';
-import { login, logout, registration } from '../services/AuthService';
+import { login, logout } from '../services/AuthService';
 import { getSettings } from '../services/UserService';
 import { startRegistrationService } from '../services/RegistrationService';
 import type { IRegistrationResponse } from '../pages/Registration/types';
@@ -46,15 +46,6 @@ class Store {
   async login(email: string, password: string) {
     try {
       const response = await login(email, password);
-      this.handleAuthSuccess(response.data.accessToken, response.data.user);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async register(email: string, password: string) {
-    try {
-      const response = await registration(email, password);
       this.handleAuthSuccess(response.data.accessToken, response.data.user);
     } catch (error) {
       console.error(error);
