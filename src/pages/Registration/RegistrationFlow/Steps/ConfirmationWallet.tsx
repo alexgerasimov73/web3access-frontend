@@ -3,25 +3,28 @@ import { useAccount, useWalletClient } from 'wagmi';
 import { useState } from 'react';
 import { Card } from '../../../../components/Card';
 import { formatDateForSignature } from '../../../../helpers/utils';
-import { RegistrationFlowStep, type StepProps } from '../../types';
+import type { StepProps } from '../../types';
+import { useConfirmWallet } from '../../hooks/useConfirmWallet';
 import { store } from '../../../../store/store';
 
 // TODO: Implement the request of settings.
-const confirmEthAddressTemplate =
-  'I, {{full_name}}, {{iso8601_timestamp}}, confirmed that I am going to use {{eth_address}} address at the web3Access platform.';
+// const confirmEthAddressTemplate =
+//   'I, {{full_name}}, {{iso8601_timestamp}}, confirmed that I am going to use {{eth_address}} address at the web3Access platform.';
 
 export const ConfirmationWallet = ({ data, refreshData }: StepProps) => {
   const { address } = useAccount();
   const { data: walletClient } = useWalletClient();
+  const { freshData, confirmWallet } = useConfirmWallet();
   const [isSigning, setIsSigning] = useState(false);
+  const { id, verificationToken } = data;
 
   const handleSubmit = () => {
-    if (!walletClient || !address) return;
+    if (!store.settings || !walletClient || !address) return;
 
     setIsSigning(true);
 
     const transmittedAt = formatDateForSignature(new Date(Date.now()));
-    const digest = confirmEthAddressTemplate
+    const digest = store.settings?.confirmEthAddressTemplate
       .replace('{{full_name}}', `${data.firstName} ${data.lastName}`)
       .replace('{{iso8601_timestamp}}', transmittedAt)
       .replace('{{eth_address}}', `${address}`);
@@ -29,15 +32,10 @@ export const ConfirmationWallet = ({ data, refreshData }: StepProps) => {
     walletClient
       .signMessage({ message: digest })
       .then((ethSignature) => {
-        console.log('ethSignature', ethSignature);
+        confirmWallet({ id, ethAddress: address, ethSignature, transmittedAt, verificationToken });
+        console.log('freshData', freshData);
 
-        // const newData = store.
-        // const newData = {
-        //   ...data,
-        //   ethAddress: address,
-        //   onboardingStep: RegistrationFlowStep.Documentation,
-        // };
-        // refreshData(newData);
+        freshData?.data && refreshData(freshData.data);
       })
       .catch((err) => console.error(err))
       .finally(() => setIsSigning(false));

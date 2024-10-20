@@ -1,5 +1,10 @@
 import axios, { type AxiosResponse } from 'axios';
-import type { IRegistrationResponse, TVerifyEmailResponse } from '../pages/Registration/types';
+import type {
+  IRegistrationResponse,
+  TConfirmWalletResponse,
+  TSubmitDetailsResponse,
+  TBaseRegistrationResponse,
+} from '../pages/Registration/types';
 
 export const startRegistrationService = async (
   email: string,
@@ -13,7 +18,7 @@ export const startRegistrationService = async (
   );
 
 export const verifyEmailService = async (
-  data: TVerifyEmailResponse,
+  data: TBaseRegistrationResponse,
 ): Promise<AxiosResponse<IRegistrationResponse>> =>
   axios.post<IRegistrationResponse>(
     `${import.meta.env.VITE_API_URL}/verify-email`,
@@ -23,15 +28,23 @@ export const verifyEmailService = async (
     },
   );
 
-export const submitDetails = async (
-  id: string,
-  firstName: string,
-  lastName: string,
-  linkedIn?: string,
+export const submitDetailsService = async (
+  data: TSubmitDetailsResponse,
 ): Promise<AxiosResponse<IRegistrationResponse>> =>
   axios.post<IRegistrationResponse>(
     `${import.meta.env.VITE_API_URL}/submit-details`,
-    { id, firstName, lastName, linkedIn },
+    { data },
+    {
+      withCredentials: true,
+    },
+  );
+
+export const confirmWalletService = async (
+  data: TConfirmWalletResponse,
+): Promise<AxiosResponse<IRegistrationResponse>> =>
+  axios.post<IRegistrationResponse>(
+    `${import.meta.env.VITE_API_URL}/confirm-wallet`,
+    { data },
     {
       withCredentials: true,
     },

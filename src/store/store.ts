@@ -3,11 +3,6 @@ import { makeAutoObservable } from 'mobx';
 import type { IAuthResponse, ISettings, IUser } from '../models/models';
 import { login, logout } from '../services/AuthService';
 import { getSettings } from '../services/UserService';
-import {
-  startRegistrationService,
-  submitDetails,
-  verifyEmailService,
-} from '../services/RegistrationService';
 import type { IRegistrationResponse } from '../pages/Registration/types';
 
 class Store {
@@ -94,34 +89,34 @@ class Store {
   }
 
   // TODO: Rewrite to leverage the tanstack query.
-  async startRegistration(email: string) {
-    try {
-      const response = await startRegistrationService(email);
-      this.setRegistrationData(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // async startRegistration(email: string) {
+  //   try {
+  //     const response = await startRegistrationService(email);
+  //     this.setRegistrationData(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
   // TODO: Rewrite to leverage the tanstack query.
-  async verifyEmail(id: string, token: string) {
-    try {
-      const response = await verifyEmailService(id, token);
-      this.setRegistrationData(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // async verifyEmail(id: string, token: string) {
+  //   try {
+  //     const response = await verifyEmailService(id, token);
+  //     this.setRegistrationData(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
   // TODO: Rewrite to leverage the tanstack query.
-  async submitDetails(id: string, firstName: string, lastName: string, linkedIn?: string) {
-    try {
-      const response = await submitDetails(id, firstName, lastName, linkedIn);
-      this.setRegistrationData(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // async submitDetails(id: string, firstName: string, lastName: string, linkedIn?: string) {
+  //   try {
+  //     const response = await submitDetails(id, firstName, lastName, linkedIn);
+  //     this.setRegistrationData(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
   // TODO: Rewrite to leverage the tanstack query.
   // async confirmWallet(firstName: string, lastName: string, linkedIn?: string) {

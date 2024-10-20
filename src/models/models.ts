@@ -11,6 +11,7 @@ export interface IAuthResponse {
 }
 
 export interface ISettings {
+  readonly confirmEthAddressTemplate: string;
   readonly logInSignatureTemplate: string;
   readonly signatureRealm: string;
 }

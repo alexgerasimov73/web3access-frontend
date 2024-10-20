@@ -36,4 +36,13 @@ export interface StepProps {
   readonly refreshData: (data: IRegistrationResponse) => void;
 }
 
-export type TVerifyEmailResponse = Pick<IRegistrationResponse, 'id' | 'verificationToken'>;
+export type TBaseRegistrationResponse = Pick<IRegistrationResponse, 'id' | 'verificationToken'>;
+
+export type TSubmitDetailsResponse = TBaseRegistrationResponse &
+  Pick<IRegistrationResponse, 'firstName' | 'lastName' | 'linkedIn'>;
+
+export type TConfirmWalletResponse = TBaseRegistrationResponse & {
+  readonly ethAddress: Address;
+  readonly ethSignature: string;
+  readonly transmittedAt: string;
+};

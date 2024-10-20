@@ -1,8 +1,8 @@
 import { Button, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { Card } from '../../../../components/Card';
-import { RegistrationFlowStep, type StepProps } from '../../types';
-import { store } from '../../../../store/store';
+import type { StepProps } from '../../types';
+import { useSubmitDetails } from '../../hooks/useSubmitDetails';
 
 interface FormData {
   readonly firstName: string;
@@ -14,20 +14,16 @@ export const Details = ({ data, refreshData }: StepProps) => {
   const {
     handleSubmit,
     register,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<FormData>();
+  const { freshData, isPending, submitDetails } = useSubmitDetails();
+  const { id, verificationToken } = data;
 
   const handleFinish = ({ firstName, lastName, linkedIn }: FormData) => {
-    const newData = store.submitDetails(firstName, lastName, linkedIn);
-    // TODO: Implement real logic.
-    // const newData = {
-    //   ...data,
-    //   firstName,
-    //   lastName,
-    //   linkedIn,
-    //   onboardingStep: RegistrationFlowStep.ConnectWallet,
-    // };
-    refreshData(newData);
+    submitDetails({ id, firstName, lastName, linkedIn, verificationToken });
+    console.log('freshData', freshData);
+
+    freshData?.data && refreshData(freshData.data);
   };
 
   return (
@@ -37,6 +33,7 @@ export const Details = ({ data, refreshData }: StepProps) => {
           <FormLabel htmlFor="firstName">First name</FormLabel>
           <Input
             id="firstName"
+            disabled={isPending}
             placeholder="Alex"
             {...register('firstName', {
               required: 'This is required',
@@ -49,6 +46,7 @@ export const Details = ({ data, refreshData }: StepProps) => {
           <FormLabel htmlFor="lastName">Last name</FormLabel>
           <Input
             id="lastName"
+            disabled={isPending}
             placeholder="Gerasimov"
             {...register('lastName', {
               required: 'This is required',
@@ -61,6 +59,7 @@ export const Details = ({ data, refreshData }: StepProps) => {
           <FormLabel htmlFor="linkedIn">First name</FormLabel>
           <Input
             id="linkedIn"
+            disabled={isPending}
             placeholder="https://www.linkedin.com/in/alexg73/"
             {...register('linkedIn', {
               pattern: {
@@ -73,7 +72,7 @@ export const Details = ({ data, refreshData }: StepProps) => {
           <FormErrorMessage>{errors.linkedIn && errors.linkedIn.message}</FormErrorMessage>
         </FormControl>
 
-        <Button w="full" isLoading={isSubmitting} type="submit">
+        <Button w="full" isLoading={isPending} type="submit">
           Continue
         </Button>
       </form>
