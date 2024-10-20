@@ -1,8 +1,8 @@
 import { Button, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { Card } from '../../../../components/Card';
-import { store } from '../../../../store/store';
 import { StartRegistrationStep } from '../../types';
+import { useStartRegistration } from '../../hooks/useStartRegistration';
 
 interface FormData {
   readonly emailAddress: string;
@@ -15,12 +15,13 @@ export const Introduction = ({ setStep }: Props) => {
   const {
     handleSubmit,
     register,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<FormData>();
+  const { isPending, isSuccess, startRegistration } = useStartRegistration();
 
   const increaseStep = ({ emailAddress }: FormData) => {
-    store.startRegistration(emailAddress);
-    setStep(StartRegistrationStep.EmailSent);
+    startRegistration(emailAddress);
+    isSuccess && setStep(StartRegistrationStep.EmailSent);
   };
 
   return (
@@ -30,6 +31,7 @@ export const Introduction = ({ setStep }: Props) => {
           <FormLabel htmlFor="emailAddress">Email</FormLabel>
           <Input
             id="emailAddress"
+            disabled={isPending}
             placeholder="E.g. hello@example.com"
             {...register('emailAddress', {
               required: 'This is required',
@@ -42,7 +44,7 @@ export const Introduction = ({ setStep }: Props) => {
           <FormErrorMessage>{errors.emailAddress && errors.emailAddress.message}</FormErrorMessage>
         </FormControl>
 
-        <Button w="full" isLoading={isSubmitting} type="submit">
+        <Button w="full" isLoading={isPending} type="submit">
           Continue
         </Button>
       </form>

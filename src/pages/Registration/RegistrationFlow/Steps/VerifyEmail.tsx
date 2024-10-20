@@ -1,7 +1,8 @@
 import { Button, FormControl, FormErrorMessage, FormLabel, Input, Text } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { Card } from '../../../../components/Card';
-import { RegistrationFlowStep, type StepProps } from '../../types';
+import type { StepProps } from '../../types';
+import { useVerifyEmail } from '../../hooks/useVerifyEmail';
 
 interface FormData {
   readonly verificationToken: string;
@@ -15,20 +16,15 @@ export const VerifyEmail = ({ id, refreshData }: Props) => {
   const {
     handleSubmit,
     register,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<FormData>();
+  const { freshData, isPending, verifyEmail } = useVerifyEmail();
 
   const handleFinish = ({ verificationToken }: FormData) => {
-    console.log('verificationToken', verificationToken);
+    verifyEmail({ id, verificationToken });
+    console.log('freshData', freshData);
 
-    // TODO: Implement real logic.
-    const data = {
-      id,
-      verificationToken,
-      emailAddress: 'mail@mail.org',
-      onboardingStep: RegistrationFlowStep.YourDetails,
-    };
-    refreshData(data);
+    freshData?.data && refreshData(freshData.data);
   };
 
   return (
@@ -40,6 +36,7 @@ export const VerifyEmail = ({ id, refreshData }: Props) => {
           <FormLabel htmlFor="verificationToken">Enter verification code</FormLabel>
           <Input
             id="verificationToken"
+            disabled={isPending}
             placeholder="ex: 6174e841"
             {...register('verificationToken', {
               required: 'This is required',
@@ -58,7 +55,7 @@ export const VerifyEmail = ({ id, refreshData }: Props) => {
           </FormErrorMessage>
         </FormControl>
 
-        <Button w="full" isLoading={isSubmitting} type="submit">
+        <Button w="full" isLoading={isPending} type="submit">
           Submit
         </Button>
       </form>

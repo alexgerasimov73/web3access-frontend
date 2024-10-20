@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Card } from '../../../../components/Card';
 import { formatDateForSignature } from '../../../../helpers/utils';
 import { RegistrationFlowStep, type StepProps } from '../../types';
+import { store } from '../../../../store/store';
 
 // TODO: Implement the request of settings.
 const confirmEthAddressTemplate =
@@ -30,12 +31,13 @@ export const ConfirmationWallet = ({ data, refreshData }: StepProps) => {
       .then((ethSignature) => {
         console.log('ethSignature', ethSignature);
 
-        const newData = {
-          ...data,
-          ethAddress: address,
-          onboardingStep: RegistrationFlowStep.Documentation,
-        };
-        refreshData(newData);
+        // const newData = store.
+        // const newData = {
+        //   ...data,
+        //   ethAddress: address,
+        //   onboardingStep: RegistrationFlowStep.Documentation,
+        // };
+        // refreshData(newData);
       })
       .catch((err) => console.error(err))
       .finally(() => setIsSigning(false));

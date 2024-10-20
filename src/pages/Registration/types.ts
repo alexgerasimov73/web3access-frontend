@@ -35,3 +35,5 @@ export interface StepProps {
   readonly data: IRegistrationResponse;
   readonly refreshData: (data: IRegistrationResponse) => void;
 }
+
+export type TVerifyEmailResponse = Pick<IRegistrationResponse, 'id' | 'verificationToken'>;

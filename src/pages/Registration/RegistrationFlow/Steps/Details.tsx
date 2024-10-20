@@ -2,6 +2,7 @@ import { Button, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra
 import { useForm } from 'react-hook-form';
 import { Card } from '../../../../components/Card';
 import { RegistrationFlowStep, type StepProps } from '../../types';
+import { store } from '../../../../store/store';
 
 interface FormData {
   readonly firstName: string;
@@ -17,14 +18,15 @@ export const Details = ({ data, refreshData }: StepProps) => {
   } = useForm<FormData>();
 
   const handleFinish = ({ firstName, lastName, linkedIn }: FormData) => {
+    const newData = store.submitDetails(firstName, lastName, linkedIn);
     // TODO: Implement real logic.
-    const newData = {
-      ...data,
-      firstName,
-      lastName,
-      linkedIn,
-      onboardingStep: RegistrationFlowStep.ConnectWallet,
-    };
+    // const newData = {
+    //   ...data,
+    //   firstName,
+    //   lastName,
+    //   linkedIn,
+    //   onboardingStep: RegistrationFlowStep.ConnectWallet,
+    // };
     refreshData(newData);
   };
 

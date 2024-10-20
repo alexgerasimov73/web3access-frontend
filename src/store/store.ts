@@ -3,7 +3,11 @@ import { makeAutoObservable } from 'mobx';
 import type { IAuthResponse, ISettings, IUser } from '../models/models';
 import { login, logout } from '../services/AuthService';
 import { getSettings } from '../services/UserService';
-import { startRegistrationService } from '../services/RegistrationService';
+import {
+  startRegistrationService,
+  submitDetails,
+  verifyEmailService,
+} from '../services/RegistrationService';
 import type { IRegistrationResponse } from '../pages/Registration/types';
 
 class Store {
@@ -98,6 +102,36 @@ class Store {
       console.error(error);
     }
   }
+
+  // TODO: Rewrite to leverage the tanstack query.
+  async verifyEmail(id: string, token: string) {
+    try {
+      const response = await verifyEmailService(id, token);
+      this.setRegistrationData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // TODO: Rewrite to leverage the tanstack query.
+  async submitDetails(id: string, firstName: string, lastName: string, linkedIn?: string) {
+    try {
+      const response = await submitDetails(id, firstName, lastName, linkedIn);
+      this.setRegistrationData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // TODO: Rewrite to leverage the tanstack query.
+  // async confirmWallet(firstName: string, lastName: string, linkedIn?: string) {
+  //   try {
+  //     const response = await submitDetails(firstName, lastName, linkedIn);
+  //     this.setRegistrationData(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 }
 
 export const store = new Store();
