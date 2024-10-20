@@ -46,3 +46,11 @@ export type TConfirmWalletResponse = TBaseRegistrationResponse & {
   readonly ethSignature: string;
   readonly transmittedAt: string;
 };
+
+export type TSignDocumentResponse = Omit<TConfirmWalletResponse, 'ethAddress'> & {
+  readonly documentId: string;
+};
+
+export type TVerifyCustomerResponse = TBaseRegistrationResponse & {
+  readonly simulatedData: string;
+};

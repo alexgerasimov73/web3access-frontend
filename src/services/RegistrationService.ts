@@ -4,6 +4,8 @@ import type {
   TConfirmWalletResponse,
   TSubmitDetailsResponse,
   TBaseRegistrationResponse,
+  TSignDocumentResponse,
+  TVerifyCustomerResponse,
 } from '../pages/Registration/types';
 
 export const startRegistrationService = async (
@@ -44,6 +46,28 @@ export const confirmWalletService = async (
 ): Promise<AxiosResponse<IRegistrationResponse>> =>
   axios.post<IRegistrationResponse>(
     `${import.meta.env.VITE_API_URL}/confirm-wallet`,
+    { data },
+    {
+      withCredentials: true,
+    },
+  );
+
+export const signDocumentService = async (
+  data: TSignDocumentResponse,
+): Promise<AxiosResponse<IRegistrationResponse>> =>
+  axios.post<IRegistrationResponse>(
+    `${import.meta.env.VITE_API_URL}/sign-document`,
+    { data },
+    {
+      withCredentials: true,
+    },
+  );
+
+export const verifyCustomerService = async (
+  data: TVerifyCustomerResponse,
+): Promise<AxiosResponse<IRegistrationResponse>> =>
+  axios.post<IRegistrationResponse>(
+    `${import.meta.env.VITE_API_URL}/verify-customer`,
     { data },
     {
       withCredentials: true,

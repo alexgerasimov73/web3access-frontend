@@ -1,22 +1,23 @@
 import { useMutation } from '@tanstack/react-query';
-import { startRegistrationService } from '../../../services/RegistrationService';
+import { verifyCustomerService } from '../../../services/RegistrationService';
 import { TAxiosError } from '../../../helpers/constants';
+import type { TVerifyCustomerResponse } from '../types';
 import { useToast } from '@chakra-ui/react';
 
-export const useStartRegistration = () => {
+export const useVerifyCustomer = () => {
   const toast = useToast();
 
   const {
+    data: freshData,
     isPending,
-    isSuccess,
-    mutate: startRegistration,
+    mutate: verifyCustomer,
   } = useMutation({
-    mutationKey: ['start registration'],
-    mutationFn: async (email: string) => await startRegistrationService(email),
+    mutationKey: ['verify customer'],
+    mutationFn: (data: TVerifyCustomerResponse) => verifyCustomerService(data),
     onSuccess: () =>
       toast({
-        title: 'Well done!',
-        description: 'Your email address was successfully sent',
+        title: 'Perfect!',
+        description: 'Your data was successfully sent',
         status: 'success',
       }),
     onError: (err: TAxiosError) =>
@@ -27,5 +28,5 @@ export const useStartRegistration = () => {
       }),
   });
 
-  return { isPending, isSuccess, startRegistration };
+  return { freshData, isPending, verifyCustomer };
 };

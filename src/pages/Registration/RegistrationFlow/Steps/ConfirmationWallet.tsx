@@ -16,7 +16,6 @@ export const ConfirmationWallet = ({ data, refreshData }: StepProps) => {
   const { data: walletClient } = useWalletClient();
   const { freshData, confirmWallet } = useConfirmWallet();
   const [isSigning, setIsSigning] = useState(false);
-  const { id, verificationToken } = data;
 
   const handleSubmit = () => {
     if (!store.settings || !walletClient || !address) return;
@@ -32,6 +31,7 @@ export const ConfirmationWallet = ({ data, refreshData }: StepProps) => {
     walletClient
       .signMessage({ message: digest })
       .then((ethSignature) => {
+        const { id, verificationToken } = data;
         confirmWallet({ id, ethAddress: address, ethSignature, transmittedAt, verificationToken });
         console.log('freshData', freshData);
 

@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { verifyEmailService } from '../../../services/RegistrationService';
 import { TAxiosError } from '../../../helpers/constants';
-import { useToast } from '@chakra-ui/react/toast';
 import type { TBaseRegistrationResponse } from '../types';
+import { useToast } from '@chakra-ui/react';
 
 export const useVerifyEmail = () => {
   const toast = useToast();

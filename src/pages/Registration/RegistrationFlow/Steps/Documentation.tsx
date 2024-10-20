@@ -5,11 +5,13 @@ import { Address } from 'viem';
 import { ChangeEvent, useState } from 'react';
 import { Card } from '../../../../components/Card';
 import { formatDateForSignature, shortenAddress } from '../../../../helpers/utils';
-import { RegistrationFlowStep, type StepProps } from '../../types';
+import type { StepProps } from '../../types';
+import { useSignDocument } from '../../hooks/useSignDocument';
+import { store } from '../../../../store/store';
 
 // TODO: Implement the request of settings.
-const licenseSigningTemplate =
-  'I, {{full_name}}, {{iso8601_timestamp}}, confirmed that I have read and agree to the terms and conditions set out in the licence agreement.';
+// const licenseSigningTemplate =
+//   'I, {{full_name}}, {{iso8601_timestamp}}, confirmed that I have read and agree to the terms and conditions set out in the licence agreement.';
 
 interface Props extends StepProps {
   readonly address: Address;
@@ -17,32 +19,39 @@ interface Props extends StepProps {
 
 export const Documentation = ({ address, data, refreshData }: Props) => {
   const { data: walletClient } = useWalletClient();
+  const { freshData, signDocument } = useSignDocument();
   const [isChecked, setIschecked] = useState(false);
   const [isSigning, setIsSigning] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => setIschecked(e.target.checked);
 
   const handleSubmit = () => {
-    if (!walletClient) return;
+    if (!store.settings || !walletClient) return;
 
     setIsSigning(true);
 
     const transmittedAt = formatDateForSignature(new Date(Date.now()));
-    const digest = licenseSigningTemplate
+    const digest = store.settings.licenseSigningTemplate
       .replace('{{full_name}}', `${data.firstName} ${data.lastName}`)
       .replace('{{iso8601_timestamp}}', transmittedAt);
 
     walletClient
       .signMessage({ message: digest })
       .then((ethSignature) => {
-        console.log('ethSignature', ethSignature);
+        if (!store.settings?.licenceAgreement.id) return;
 
-        const newData = {
-          ...data,
-          documentsSignedAt: transmittedAt,
-          onboardingStep: RegistrationFlowStep.KYCAML,
-        };
-        refreshData(newData);
+        const { id, verificationToken } = data;
+
+        signDocument({
+          id,
+          documentId: store.settings.licenceAgreement.id,
+          ethSignature,
+          transmittedAt,
+          verificationToken,
+        });
+        console.log('freshData', freshData);
+
+        freshData?.data && refreshData(freshData.data);
       })
       .catch((err) => console.error(err))
       .finally(() => setIsSigning(false));

@@ -1,28 +1,28 @@
 import { useMutation } from '@tanstack/react-query';
-import { confirmWalletService } from '../../../services/RegistrationService';
+import { signDocumentService } from '../../../services/RegistrationService';
 import { TAxiosError } from '../../../helpers/constants';
-import type { TConfirmWalletResponse } from '../types';
+import type { TSignDocumentResponse } from '../types';
 import { useToast } from '@chakra-ui/react';
 
-export const useConfirmWallet = () => {
+export const useSignDocument = () => {
   const toast = useToast();
 
-  const { data: freshData, mutate: confirmWallet } = useMutation({
-    mutationKey: ['confirm wallet'],
-    mutationFn: (data: TConfirmWalletResponse) => confirmWalletService(data),
+  const { data: freshData, mutate: signDocument } = useMutation({
+    mutationKey: ['sign document'],
+    mutationFn: (data: TSignDocumentResponse) => signDocumentService(data),
     onSuccess: () =>
       toast({
-        title: 'Splendidly!',
+        title: 'Remarkably!',
         description: 'Your data was successfully sent',
         status: 'success',
       }),
     onError: (err: TAxiosError) =>
       toast({
-        title: 'Oh no!',
+        title: 'Arghhhh!',
         description: `An error has occured: ${err.response?.data.message}`,
         status: 'error',
       }),
   });
 
-  return { freshData, confirmWallet };
+  return { freshData, signDocument };
 };
