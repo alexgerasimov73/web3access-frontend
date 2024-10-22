@@ -12,7 +12,7 @@ export const useStartRegistration = () => {
     mutate: startRegistration,
   } = useMutation({
     mutationKey: ['start registration'],
-    mutationFn: async (email: string) => await startRegistrationService(email),
+    mutationFn: async (emailAddress: string) => await startRegistrationService(emailAddress),
     onSuccess: () =>
       toast({
         title: 'Well done!',

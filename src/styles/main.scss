@@ -16,7 +16,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-input {
+input,
+textarea {
   accent-color: $green;
   caret-color: $green;
 }

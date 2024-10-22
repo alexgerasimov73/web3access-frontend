@@ -1,9 +1,9 @@
-import axios from 'axios';
 import { makeAutoObservable } from 'mobx';
 import type { IAuthResponse, ISettings, IUser } from '../models/models';
 import { login, logout } from '../services/AuthService';
 import { getSettings } from '../services/UserService';
 import type { IRegistrationResponse } from '../pages/Registration/types';
+import { api } from '../interceptors/interceptors';
 
 class Store {
   user: IUser | null = null;
@@ -65,9 +65,7 @@ class Store {
   async checkAuth() {
     this.setIsLoading(true);
     try {
-      const response = await axios.get<IAuthResponse>(`${import.meta.env.VITE_API_URL}/refresh`, {
-        withCredentials: true,
-      });
+      const response = await api.get<IAuthResponse>(`${import.meta.env.VITE_API_URL}/refresh`);
       this.handleAuthSuccess(response.data.accessToken, response.data.user);
     } catch (error) {
       console.error(error);

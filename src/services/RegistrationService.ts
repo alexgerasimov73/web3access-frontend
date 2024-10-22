@@ -1,4 +1,4 @@
-import axios, { type AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
 import type {
   IRegistrationResponse,
   TConfirmWalletResponse,
@@ -7,69 +7,36 @@ import type {
   TSignDocumentResponse,
   TVerifyCustomerResponse,
 } from '../pages/Registration/types';
+import { api } from '../interceptors/interceptors';
+
+const REGISTRATION_URL = `${import.meta.env.VITE_API_URL}/registration`;
 
 export const startRegistrationService = async (
-  email: string,
+  emailAddress: string,
 ): Promise<AxiosResponse<IRegistrationResponse>> =>
-  axios.post<IRegistrationResponse>(
-    `${import.meta.env.VITE_API_URL}/start-registration`,
-    { email },
-    {
-      withCredentials: true,
-    },
-  );
+  api.post<IRegistrationResponse>(`${REGISTRATION_URL}/start`, { emailAddress });
 
 export const verifyEmailService = async (
   data: TBaseRegistrationResponse,
 ): Promise<AxiosResponse<IRegistrationResponse>> =>
-  axios.post<IRegistrationResponse>(
-    `${import.meta.env.VITE_API_URL}/verify-email`,
-    { data },
-    {
-      withCredentials: true,
-    },
-  );
+  api.post<IRegistrationResponse>(`${REGISTRATION_URL}/verify-email`, { data });
 
 export const submitDetailsService = async (
   data: TSubmitDetailsResponse,
 ): Promise<AxiosResponse<IRegistrationResponse>> =>
-  axios.post<IRegistrationResponse>(
-    `${import.meta.env.VITE_API_URL}/submit-details`,
-    { data },
-    {
-      withCredentials: true,
-    },
-  );
+  api.post<IRegistrationResponse>(`${REGISTRATION_URL}/submit-details`, { data });
 
 export const confirmWalletService = async (
   data: TConfirmWalletResponse,
 ): Promise<AxiosResponse<IRegistrationResponse>> =>
-  axios.post<IRegistrationResponse>(
-    `${import.meta.env.VITE_API_URL}/confirm-wallet`,
-    { data },
-    {
-      withCredentials: true,
-    },
-  );
+  api.post<IRegistrationResponse>(`${REGISTRATION_URL}/confirm-wallet`, { data });
 
 export const signDocumentService = async (
   data: TSignDocumentResponse,
 ): Promise<AxiosResponse<IRegistrationResponse>> =>
-  axios.post<IRegistrationResponse>(
-    `${import.meta.env.VITE_API_URL}/sign-document`,
-    { data },
-    {
-      withCredentials: true,
-    },
-  );
+  api.post<IRegistrationResponse>(`${REGISTRATION_URL}/sign-document`, { data });
 
 export const verifyCustomerService = async (
   data: TVerifyCustomerResponse,
 ): Promise<AxiosResponse<IRegistrationResponse>> =>
-  axios.post<IRegistrationResponse>(
-    `${import.meta.env.VITE_API_URL}/verify-customer`,
-    { data },
-    {
-      withCredentials: true,
-    },
-  );
+  api.post<IRegistrationResponse>(`${REGISTRATION_URL}/verify-customer`, { data });
