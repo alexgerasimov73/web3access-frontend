@@ -6,6 +6,7 @@ import type {
   TBaseRegistrationResponse,
   TSignDocumentResponse,
   TVerifyCustomerResponse,
+  IFinalRegistrationResponse,
 } from '../pages/Registration/types';
 import { api } from '../interceptors/interceptors';
 
@@ -19,24 +20,24 @@ export const startRegistrationService = async (
 export const verifyEmailService = async (
   data: TBaseRegistrationResponse,
 ): Promise<AxiosResponse<IRegistrationResponse>> =>
-  api.post<IRegistrationResponse>(`${REGISTRATION_URL}/verify-email`, { data });
+  api.post<IRegistrationResponse>(`${REGISTRATION_URL}/verify-email`, data);
 
 export const submitDetailsService = async (
   data: TSubmitDetailsResponse,
 ): Promise<AxiosResponse<IRegistrationResponse>> =>
-  api.post<IRegistrationResponse>(`${REGISTRATION_URL}/submit-details`, { data });
+  api.post<IRegistrationResponse>(`${REGISTRATION_URL}/submit-details`, data);
 
 export const confirmWalletService = async (
   data: TConfirmWalletResponse,
 ): Promise<AxiosResponse<IRegistrationResponse>> =>
-  api.post<IRegistrationResponse>(`${REGISTRATION_URL}/confirm-wallet`, { data });
+  api.post<IRegistrationResponse>(`${REGISTRATION_URL}/confirm-wallet`, data);
 
 export const signDocumentService = async (
   data: TSignDocumentResponse,
 ): Promise<AxiosResponse<IRegistrationResponse>> =>
-  api.post<IRegistrationResponse>(`${REGISTRATION_URL}/sign-document`, { data });
+  api.post<IRegistrationResponse>(`${REGISTRATION_URL}/sign-document`, data);
 
 export const verifyCustomerService = async (
   data: TVerifyCustomerResponse,
-): Promise<AxiosResponse<IRegistrationResponse>> =>
-  api.post<IRegistrationResponse>(`${REGISTRATION_URL}/verify-customer`, { data });
+): Promise<AxiosResponse<IFinalRegistrationResponse>> =>
+  api.post<IFinalRegistrationResponse>(`${REGISTRATION_URL}/verify-customer`, data);

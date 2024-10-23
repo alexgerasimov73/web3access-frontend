@@ -19,7 +19,7 @@ export const useSignDocument = () => {
     onError: (err: TAxiosError) =>
       toast({
         title: 'Arghhhh!',
-        description: `An error has occured: ${err.response?.data.message}`,
+        description: `An error has occurred: ${err.response?.data.message}`,
         status: 'error',
       }),
   });

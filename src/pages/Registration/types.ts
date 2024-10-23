@@ -1,4 +1,5 @@
 import { Address } from 'viem';
+import { IAuthResponse } from '../../models/models';
 
 export const enum StartRegistrationStep {
   Introduction,
@@ -26,9 +27,12 @@ export interface IRegistrationResponse {
   readonly lastName?: string;
   readonly linkedIn?: string;
   readonly onboardingStep: RegistrationFlowStep;
-  readonly state?: string;
-  readonly submittedAt?: string;
   readonly verificationToken: string;
+}
+
+export interface IFinalRegistrationResponse {
+  readonly registration: IRegistrationResponse;
+  readonly user: IAuthResponse;
 }
 
 export interface StepProps {

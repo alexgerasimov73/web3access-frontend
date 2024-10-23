@@ -22,7 +22,7 @@ export const useStartRegistration = () => {
     onError: (err: TAxiosError) =>
       toast({
         title: 'Oh no!',
-        description: `An error has occured: ${err.response?.data.message}`,
+        description: `An error has occurred: ${err.response?.data.message}`,
         status: 'error',
       }),
   });

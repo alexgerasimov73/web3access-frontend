@@ -1,7 +1,12 @@
+import { Address } from 'viem';
+
 export interface IUser {
-  readonly email: string;
+  readonly emailAddress: string;
+  readonly ethAddress: Address;
   readonly id: string;
-  readonly isActivated: boolean;
+  readonly firstName: string;
+  readonly lastName: string;
+  readonly linkedIn?: string;
 }
 
 export interface IAuthResponse {

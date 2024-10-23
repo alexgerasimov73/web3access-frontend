@@ -7,10 +7,6 @@ import type { StepProps } from '../../types';
 import { useConfirmWallet } from '../../hooks/useConfirmWallet';
 import { store } from '../../../../store/store';
 
-// TODO: Implement the request of settings.
-// const confirmEthAddressTemplate =
-//   'I, {{full_name}}, {{iso8601_timestamp}}, confirmed that I am going to use {{eth_address}} address at the web3Access platform.';
-
 export const ConfirmationWallet = ({ data, refreshData }: StepProps) => {
   const { address } = useAccount();
   const { data: walletClient } = useWalletClient();

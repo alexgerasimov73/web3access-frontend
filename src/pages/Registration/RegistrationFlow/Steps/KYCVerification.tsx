@@ -13,7 +13,7 @@ export const KYCVerification = ({ data, refreshData }: StepProps) => {
     verifyCustomer({ id, simulatedData: 'the data looks eligible', verificationToken });
     console.log('freshData', freshData);
 
-    freshData?.data && refreshData(freshData.data);
+    freshData?.data && refreshData(freshData.data.registration);
   };
 
   return (

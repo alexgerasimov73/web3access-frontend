@@ -23,7 +23,7 @@ export const useSubmitDetails = () => {
     onError: (err: TAxiosError) =>
       toast({
         title: 'Argh!',
-        description: `An error has occured: ${err.response?.data.message}`,
+        description: `An error has occurred: ${err.response?.data.message}`,
         status: 'error',
       }),
   });

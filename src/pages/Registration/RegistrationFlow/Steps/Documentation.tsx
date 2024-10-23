@@ -9,10 +9,6 @@ import type { StepProps } from '../../types';
 import { useSignDocument } from '../../hooks/useSignDocument';
 import { store } from '../../../../store/store';
 
-// TODO: Implement the request of settings.
-// const licenseSigningTemplate =
-//   'I, {{full_name}}, {{iso8601_timestamp}}, confirmed that I have read and agree to the terms and conditions set out in the licence agreement.';
-
 interface Props extends StepProps {
   readonly address: Address;
 }
