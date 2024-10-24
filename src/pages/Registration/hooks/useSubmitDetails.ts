@@ -1,25 +1,23 @@
 import { useMutation } from '@tanstack/react-query';
 import { submitDetailsService } from '../../../services/RegistrationService';
 import { TAxiosError } from '../../../helpers/constants';
-import type { TSubmitDetailsResponse } from '../types';
+import type { IRegistrationResponse, TSubmitDetailsResponse } from '../types';
 import { useToast } from '@chakra-ui/react';
 
-export const useSubmitDetails = () => {
+export const useSubmitDetails = (refreshData: (data: IRegistrationResponse) => void) => {
   const toast = useToast();
 
-  const {
-    data: freshData,
-    isPending,
-    mutate: submitDetails,
-  } = useMutation({
+  const { isPending, mutate: submitDetails } = useMutation({
     mutationKey: ['submit details'],
     mutationFn: (data: TSubmitDetailsResponse) => submitDetailsService(data),
-    onSuccess: () =>
+    onSuccess: (response) => {
       toast({
         title: 'Marvellously!',
         description: 'Your data was successfully sent',
         status: 'success',
-      }),
+      });
+      refreshData(response.data);
+    },
     onError: (err: TAxiosError) =>
       toast({
         title: 'Argh!',
@@ -28,5 +26,5 @@ export const useSubmitDetails = () => {
       }),
   });
 
-  return { freshData, isPending, submitDetails };
+  return { isPending, submitDetails };
 };

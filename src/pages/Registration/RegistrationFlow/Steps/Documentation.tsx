@@ -15,7 +15,7 @@ interface Props extends StepProps {
 
 export const Documentation = ({ address, data, refreshData }: Props) => {
   const { data: walletClient } = useWalletClient();
-  const { freshData, signDocument } = useSignDocument();
+  const { signDocument } = useSignDocument(refreshData);
   const [isChecked, setIschecked] = useState(false);
   const [isSigning, setIsSigning] = useState(false);
 
@@ -45,9 +45,6 @@ export const Documentation = ({ address, data, refreshData }: Props) => {
           transmittedAt,
           verificationToken,
         });
-        console.log('freshData', freshData);
-
-        freshData?.data && refreshData(freshData.data);
       })
       .catch((err) => console.error(err))
       .finally(() => setIsSigning(false));
@@ -58,7 +55,7 @@ export const Documentation = ({ address, data, refreshData }: Props) => {
       <Text>Please read and sign the licence agreement for using the platform:</Text>
 
       <VStack align="flex-start">
-        <Link href="" isExternal>
+        <Link href={store.settings?.licenceAgreement.downloadUrl} isExternal>
           Open licence agreement <ExternalLinkIcon mx="2px" />
         </Link>
 

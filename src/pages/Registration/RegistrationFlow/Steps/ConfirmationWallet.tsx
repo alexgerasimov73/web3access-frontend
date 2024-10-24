@@ -10,7 +10,7 @@ import { store } from '../../../../store/store';
 export const ConfirmationWallet = ({ data, refreshData }: StepProps) => {
   const { address } = useAccount();
   const { data: walletClient } = useWalletClient();
-  const { freshData, confirmWallet } = useConfirmWallet();
+  const { confirmWallet } = useConfirmWallet(refreshData);
   const [isSigning, setIsSigning] = useState(false);
 
   const handleSubmit = () => {
@@ -29,9 +29,6 @@ export const ConfirmationWallet = ({ data, refreshData }: StepProps) => {
       .then((ethSignature) => {
         const { id, verificationToken } = data;
         confirmWallet({ id, ethAddress: address, ethSignature, transmittedAt, verificationToken });
-        console.log('freshData', freshData);
-
-        freshData?.data && refreshData(freshData.data);
       })
       .catch((err) => console.error(err))
       .finally(() => setIsSigning(false));

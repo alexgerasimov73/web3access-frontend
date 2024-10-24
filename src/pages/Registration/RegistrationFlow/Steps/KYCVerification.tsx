@@ -5,15 +5,11 @@ import type { StepProps } from '../../types';
 import { useVerifyCustomer } from '../../hooks/useVerifyCustomer';
 
 export const KYCVerification = ({ data, refreshData }: StepProps) => {
-  const { freshData, isPending, verifyCustomer } = useVerifyCustomer();
+  const { isPending, verifyCustomer } = useVerifyCustomer(refreshData);
 
   const onContinue = () => {
     const { id, verificationToken } = data;
-
     verifyCustomer({ id, simulatedData: 'the data looks eligible', verificationToken });
-    console.log('freshData', freshData);
-
-    freshData?.data && refreshData(freshData.data.registration);
   };
 
   return (

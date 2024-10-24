@@ -22,6 +22,22 @@ textarea {
   caret-color: $green;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div,
+span,
+label,
+input {
+  &::selection {
+    background-color: #c53030;
+  }
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 0s 600000s, color 0s 600000s !important;

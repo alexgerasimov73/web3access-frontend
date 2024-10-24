@@ -1,21 +1,23 @@
 import { useMutation } from '@tanstack/react-query';
 import { signDocumentService } from '../../../services/RegistrationService';
 import { TAxiosError } from '../../../helpers/constants';
-import type { TSignDocumentResponse } from '../types';
+import type { IRegistrationResponse, TSignDocumentResponse } from '../types';
 import { useToast } from '@chakra-ui/react';
 
-export const useSignDocument = () => {
+export const useSignDocument = (refreshData: (data: IRegistrationResponse) => void) => {
   const toast = useToast();
 
-  const { data: freshData, mutate: signDocument } = useMutation({
+  const { mutate: signDocument } = useMutation({
     mutationKey: ['sign document'],
     mutationFn: (data: TSignDocumentResponse) => signDocumentService(data),
-    onSuccess: () =>
+    onSuccess: (response) => {
       toast({
         title: 'Remarkably!',
         description: 'Your data was successfully sent',
         status: 'success',
-      }),
+      });
+      refreshData(response.data);
+    },
     onError: (err: TAxiosError) =>
       toast({
         title: 'Arghhhh!',
@@ -24,5 +26,5 @@ export const useSignDocument = () => {
       }),
   });
 
-  return { freshData, signDocument };
+  return { signDocument };
 };

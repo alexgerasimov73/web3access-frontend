@@ -17,12 +17,9 @@ export const Introduction = ({ setStep }: Props) => {
     register,
     formState: { errors },
   } = useForm<FormData>();
-  const { isPending, isSuccess, startRegistration } = useStartRegistration();
+  const { isPending, startRegistration } = useStartRegistration(setStep);
 
-  const increaseStep = ({ emailAddress }: FormData) => {
-    startRegistration(emailAddress);
-    isSuccess && setStep(StartRegistrationStep.EmailSent);
-  };
+  const increaseStep = ({ emailAddress }: FormData) => startRegistration(emailAddress);
 
   return (
     <Card title="Your application to join">

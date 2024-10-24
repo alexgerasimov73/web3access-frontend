@@ -16,15 +16,11 @@ export const Details = ({ data, refreshData }: StepProps) => {
     register,
     formState: { errors },
   } = useForm<FormData>();
-  const { freshData, isPending, submitDetails } = useSubmitDetails();
+  const { isPending, submitDetails } = useSubmitDetails(refreshData);
   const { id, verificationToken } = data;
 
-  const handleFinish = ({ firstName, lastName, linkedIn }: FormData) => {
+  const handleFinish = ({ firstName, lastName, linkedIn }: FormData) =>
     submitDetails({ id, firstName, lastName, linkedIn, verificationToken });
-    console.log('freshData', freshData);
-
-    freshData?.data && refreshData(freshData.data);
-  };
 
   return (
     <Card title="Your Details">

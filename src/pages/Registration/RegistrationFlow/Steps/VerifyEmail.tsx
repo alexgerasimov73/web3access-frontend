@@ -18,14 +18,9 @@ export const VerifyEmail = ({ id, refreshData }: Props) => {
     register,
     formState: { errors },
   } = useForm<FormData>();
-  const { freshData, isPending, verifyEmail } = useVerifyEmail();
+  const { isPending, verifyEmail } = useVerifyEmail(refreshData);
 
-  const handleFinish = ({ verificationToken }: FormData) => {
-    verifyEmail({ id, verificationToken });
-    console.log('freshData', freshData);
-
-    freshData?.data && refreshData(freshData.data);
-  };
+  const handleFinish = ({ verificationToken }: FormData) => verifyEmail({ id, verificationToken });
 
   return (
     <Card title="Verify your email">

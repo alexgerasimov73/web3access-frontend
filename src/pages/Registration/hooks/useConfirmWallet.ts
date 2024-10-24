@@ -1,21 +1,23 @@
 import { useMutation } from '@tanstack/react-query';
 import { confirmWalletService } from '../../../services/RegistrationService';
 import { TAxiosError } from '../../../helpers/constants';
-import type { TConfirmWalletResponse } from '../types';
+import type { IRegistrationResponse, TConfirmWalletResponse } from '../types';
 import { useToast } from '@chakra-ui/react';
 
-export const useConfirmWallet = () => {
+export const useConfirmWallet = (refreshData: (data: IRegistrationResponse) => void) => {
   const toast = useToast();
 
-  const { data: freshData, mutate: confirmWallet } = useMutation({
+  const { mutate: confirmWallet } = useMutation({
     mutationKey: ['confirm wallet'],
     mutationFn: (data: TConfirmWalletResponse) => confirmWalletService(data),
-    onSuccess: () =>
+    onSuccess: (response) => {
       toast({
         title: 'Splendidly!',
         description: 'Your data was successfully sent',
         status: 'success',
-      }),
+      });
+      refreshData(response.data);
+    },
     onError: (err: TAxiosError) =>
       toast({
         title: 'Oh no!',
@@ -24,5 +26,5 @@ export const useConfirmWallet = () => {
       }),
   });
 
-  return { freshData, confirmWallet };
+  return { confirmWallet };
 };
