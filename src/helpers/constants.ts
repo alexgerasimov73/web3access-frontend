@@ -1,4 +1,5 @@
 import { AxiosError } from 'axios';
+import { Address } from 'viem';
 
 interface IAxiosErrorData {
   readonly error: string;
@@ -7,6 +8,15 @@ interface IAxiosErrorData {
 }
 
 export type TAxiosError = AxiosError<IAxiosErrorData>;
+
+export type LoginOrRegistration = 'login' | 'registration';
+
+export interface ILoginResponse {
+  readonly chainId: number;
+  readonly ethAddress: Address;
+  readonly ethSignature: string;
+  readonly transmittedAt: string;
+}
 
 export const enum ConnectorNames {
   MetaMask = 'MetaMask',

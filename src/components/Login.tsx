@@ -1,18 +1,24 @@
 import { useAccount, useWalletClient } from 'wagmi';
+import { observer } from 'mobx-react-lite';
 import { Button } from '@chakra-ui/react';
-import { useState } from 'react';
 import { store } from '../store/store';
 import { formatDateForSignature } from '../helpers/utils';
+import { useLogin } from '../hooks/useLogin';
 
-export const Login = () => {
-  const { chainId } = useAccount();
+interface Props {
+  readonly isPending: boolean;
+  readonly setIsPending: (isPending: boolean) => void;
+}
+
+export const Login = observer(({ isPending, setIsPending }: Props) => {
+  const { address, chainId } = useAccount();
   const { data: walletClient } = useWalletClient();
-  const [isSigning, setIsSigning] = useState(false);
+  const { login } = useLogin();
 
   const handleLogin = () => {
-    if (!store.settings || store.user || !walletClient) return;
+    if (!address || !chainId || !store.settings || store.user || !walletClient) return;
 
-    setIsSigning(true);
+    setIsPending(true);
 
     // Request to sign our digest.
     const transmittedAt = formatDateForSignature(new Date(Date.now()));
@@ -23,17 +29,14 @@ export const Login = () => {
 
     walletClient
       .signMessage({ message: digest })
-      .then((ethSignature) => {
-        console.log('ethSignature', ethSignature);
-        // TODO: Implement authenticate method.
-      })
+      .then((ethSignature) => login({ chainId, ethAddress: address, ethSignature, transmittedAt }))
       .catch((err) => console.error(err))
-      .finally(() => setIsSigning(false));
+      .finally(() => setIsPending(false));
   };
 
   return (
-    <Button disabled={isSigning} size="lg" onClick={handleLogin}>
+    <Button disabled={isPending} size="lg" onClick={handleLogin}>
       Login
     </Button>
   );
-};
+});

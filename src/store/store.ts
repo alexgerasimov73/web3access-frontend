@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import type { IAuthResponse, ISettings, IUser } from '../models/models';
-import { login, logout } from '../services/AuthService';
+import { logout } from '../services/AuthService';
 import { getSettings } from '../services/UserService';
 import type { IRegistrationResponse } from '../pages/Registration/types';
 import { api } from '../interceptors/interceptors';
@@ -42,14 +42,14 @@ class Store {
     this.setUser(user);
   }
 
-  async login(email: string, password: string) {
-    try {
-      const response = await login(email, password);
-      this.handleAuthSuccess(response.data.accessToken, response.data.user);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // async login(email: string, password: string) {
+  //   try {
+  //     const response = await login(email, password);
+  //     this.handleAuthSuccess(response.data.accessToken, response.data.user);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
   async logout() {
     try {

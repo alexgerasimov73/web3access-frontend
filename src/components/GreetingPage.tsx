@@ -5,6 +5,7 @@ import { Login } from './Login';
 import { LoginOrRegistration } from '../helpers/constants';
 
 export const GreetingPage = () => {
+  const [isPending, setIsPending] = useState(false);
   const [hoveredBlock, setHoveredBlock] = useState<LoginOrRegistration | null>(null);
 
   const handleMouseEnter = (block: LoginOrRegistration) => () => setHoveredBlock(block);
@@ -32,7 +33,7 @@ export const GreetingPage = () => {
           <Heading as="h3" mb={10} size="lg">
             Great! Let's get you logged in.
           </Heading>
-          <Login />
+          <Login isPending={isPending} setIsPending={setIsPending} />
         </VStack>
 
         <VStack
@@ -49,7 +50,7 @@ export const GreetingPage = () => {
           <Heading as="h3" mb={10} size="lg">
             Let's get you set up with an account.
           </Heading>
-          <Button size="lg" colorScheme="orange">
+          <Button disabled={isPending} size="lg" colorScheme="orange">
             <Link to="/registration">To registration</Link>
           </Button>
         </VStack>

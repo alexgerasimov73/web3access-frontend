@@ -15,8 +15,6 @@ export const enum RegistrationFlowStep {
   Confirmation,
 }
 
-export type LoginOrRegistration = 'login' | 'registration';
-
 export interface IRegistrationResponse {
   readonly documentsSignedAt?: string;
   readonly emailAddress: string;

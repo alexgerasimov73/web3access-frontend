@@ -3,6 +3,7 @@ import { useAccount } from 'wagmi';
 import { store } from '../../store/store';
 import { ConnectWallet } from '../../components/ConnectWallet';
 import { GreetingPage } from '../../components/GreetingPage';
+import { useCheckAuth } from '../../hooks/useCheckAuth';
 
 const enum Permission {
   AuthenticatedAndIdentified,
@@ -15,6 +16,8 @@ interface Props {
 
 const Guard = ({ requires }: Props) => {
   const { isConnected } = useAccount();
+
+  useCheckAuth();
 
   const authorized =
     (requires === Permission.AuthenticatedAndIdentified && store.user) ||
