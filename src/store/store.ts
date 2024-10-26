@@ -1,9 +1,9 @@
 import { makeAutoObservable } from 'mobx';
-import type { IAuthResponse, ISettings, IUser } from '../models/models';
+import type { ISettings, IUser } from '../models/models';
 // import { logout } from '../services/AuthService';
-import { getSettings } from '../services/UserService';
+// import { getSettings } from '../services/UserService';
 import type { IRegistrationResponse } from '../pages/Registration/types';
-import { api } from '../interceptors/interceptors';
+// import { api } from '../interceptors/interceptors';
 
 class Store {
   user: IUser | null = null;
@@ -36,11 +36,11 @@ class Store {
     this.registrationData = registrationData;
   }
 
-  private handleAuthSuccess(accessToken: string, user: IUser) {
-    localStorage.setItem('token', accessToken);
-    this.setAuth(true);
-    this.setUser(user);
-  }
+  // private handleAuthSuccess(accessToken: string, user: IUser) {
+  //   localStorage.setItem('token', accessToken);
+  //   this.setAuth(true);
+  //   this.setUser(user);
+  // }
 
   // async login(email: string, password: string) {
   //   try {
@@ -62,29 +62,29 @@ class Store {
   //   }
   // }
 
-  async checkAuth() {
-    this.setIsLoading(true);
-    try {
-      const response = await api.get<IAuthResponse>(`${import.meta.env.VITE_API_URL}/refresh`);
-      this.handleAuthSuccess(response.data.accessToken, response.data.user);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      this.setIsLoading(false);
-    }
-  }
+  // async checkAuth() {
+  //   this.setIsLoading(true);
+  //   try {
+  //     const response = await api.get<IAuthResponse>(`${import.meta.env.VITE_API_URL}/refresh`);
+  //     this.handleAuthSuccess(response.data.accessToken, response.data.user);
+  //   } catch (error) {
+  //     console.error(error);
+  //   } finally {
+  //     this.setIsLoading(false);
+  //   }
+  // }
 
-  async getSettings() {
-    this.setIsLoading(true);
-    try {
-      const response = await getSettings();
-      this.setSettings(response.data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      this.setIsLoading(false);
-    }
-  }
+  // async getSettings() {
+  //   this.setIsLoading(true);
+  //   try {
+  //     const response = await getSettings();
+  //     this.setSettings(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   } finally {
+  //     this.setIsLoading(false);
+  //   }
+  // }
 
   // TODO: Rewrite to leverage the tanstack query.
   // async startRegistration(email: string) {

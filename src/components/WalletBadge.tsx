@@ -12,29 +12,26 @@ import {
   useDisclosure,
   VStack,
 } from '@chakra-ui/react';
-import { useEffect } from 'react';
 import { Loader } from './Loader';
 import { store } from '../store/store';
 import { AvocadoAvatar, Wallet } from '../assets';
 import { logoFor } from '../helpers/utils';
+import { useGetSettings } from '../hooks/useGetSettings';
 import { useLogout } from '../hooks/useLogout';
 
 export const WalletBadge = observer(() => {
   const { address, chain, connector } = useAccount();
   const { disconnect } = useDisconnect();
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const { isLoading } = useGetSettings();
   const logout = useLogout();
-
-  useEffect(() => {
-    store.getSettings();
-  }, []);
 
   const handleDisconnect = () => {
     store.user && logout();
     disconnect();
   };
 
-  if (store.isLoading) return <Loader label="Loading settings..." />;
+  if (isLoading) return <Loader label="Loading settings..." />;
 
   return (
     <>

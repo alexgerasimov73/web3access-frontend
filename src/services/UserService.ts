@@ -6,5 +6,5 @@ import { api } from '../interceptors/interceptors';
 // export const fetchUsers = async (): Promise<AxiosResponse<ReadonlyArray<IUser>>> =>
 //   apiWithAuth.get<ReadonlyArray<IUser>>('/users');
 
-export const getSettings = async (): Promise<AxiosResponse<ISettings>> =>
-  api.get<ISettings>(`${import.meta.env.VITE_API_URL}/settings`);
+export const getSettingsSevice = async (): Promise<AxiosResponse<ISettings>> =>
+  await api.get<ISettings>(`${import.meta.env.VITE_API_URL}/settings`);
