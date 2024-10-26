@@ -9,4 +9,4 @@ export const refreshService = async (): Promise<AxiosResponse<IAuthResponse>> =>
 export const loginService = async (data: ILoginResponse): Promise<AxiosResponse<IAuthResponse>> =>
   await api.post<IAuthResponse>('/login', data);
 
-export const logout = async (): Promise<void> => apiWithAuth.post('/logout');
+export const logoutService = async (): Promise<void> => await apiWithAuth.post('/logout');

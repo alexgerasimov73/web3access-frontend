@@ -1,5 +1,6 @@
 import { useAccount, useDisconnect } from 'wagmi';
 import { Outlet } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
 import {
   Button,
   HStack,
@@ -16,17 +17,22 @@ import { Loader } from './Loader';
 import { store } from '../store/store';
 import { AvocadoAvatar, Wallet } from '../assets';
 import { logoFor } from '../helpers/utils';
+import { useLogout } from '../hooks/useLogout';
 
-export const WalletBadge = () => {
+export const WalletBadge = observer(() => {
   const { address, chain, connector } = useAccount();
   const { disconnect } = useDisconnect();
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const logout = useLogout();
 
   useEffect(() => {
     store.getSettings();
   }, []);
 
-  const handleDisconnect = () => disconnect();
+  const handleDisconnect = () => {
+    store.user && logout();
+    disconnect();
+  };
 
   if (store.isLoading) return <Loader label="Loading settings..." />;
 
@@ -58,7 +64,7 @@ export const WalletBadge = () => {
               colorScheme="red"
               variant="link"
               onClick={handleDisconnect}>
-              Disconnect
+              {store.user ? 'Logout & Disconnect' : 'Disconnect'}
             </Button>
 
             {connector && chain && (
@@ -80,4 +86,4 @@ export const WalletBadge = () => {
       <Outlet />
     </>
   );
-};
+});

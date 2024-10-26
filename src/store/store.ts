@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import type { IAuthResponse, ISettings, IUser } from '../models/models';
-import { logout } from '../services/AuthService';
+// import { logout } from '../services/AuthService';
 import { getSettings } from '../services/UserService';
 import type { IRegistrationResponse } from '../pages/Registration/types';
 import { api } from '../interceptors/interceptors';
@@ -51,16 +51,16 @@ class Store {
   //   }
   // }
 
-  async logout() {
-    try {
-      await logout();
-      localStorage.removeItem('token');
-      this.setAuth(false);
-      this.setUser(null);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // async logout() {
+  //   try {
+  //     await logout();
+  //     localStorage.removeItem('token');
+  //     this.setAuth(false);
+  //     this.setUser(null);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
   async checkAuth() {
     this.setIsLoading(true);

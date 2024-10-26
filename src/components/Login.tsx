@@ -13,7 +13,7 @@ interface Props {
 export const Login = observer(({ isPending, setIsPending }: Props) => {
   const { address, chainId } = useAccount();
   const { data: walletClient } = useWalletClient();
-  const { login } = useLogin();
+  const login = useLogin();
 
   const handleLogin = () => {
     if (!address || !chainId || !store.settings || store.user || !walletClient) return;
