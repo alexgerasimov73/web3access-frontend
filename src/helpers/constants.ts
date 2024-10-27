@@ -23,5 +23,10 @@ export const enum ConnectorNames {
   Web3Auth = 'Web3Auth',
 }
 
+export const enum TokenNames {
+  Mainnet = 'Mainnet',
+  Sepolia = 'Sepolia',
+}
+
 export const JWT_EXPIRED = 'jwt expired';
 export const JWT_MUST_BE_PROVIDED = 'jwt must be provided';

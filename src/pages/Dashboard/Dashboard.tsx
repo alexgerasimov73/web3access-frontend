@@ -42,11 +42,13 @@ export const Dashboard = observer(() => {
 
         <VStack align="flex-start" spacing={2}>
           {balances?.map((balance) => (
-            <Box key={balance.symbol}>
-              <Image alt={`${balance.symbol}-icon`} src={logoFor(balance.symbol)} />
+            <HStack key={balance.name}>
+              <Image h="7" alt={`${balance.symbol}-icon`} src={logoFor(balance.name)} />
               <span>{balance.formatted}</span>
-              <span>{balance.symbol}</span>
-            </Box>
+              <span>
+                {balance.symbol} {balance.name}
+              </span>
+            </HStack>
           ))}
         </VStack>
       </Flex>

@@ -1,7 +1,7 @@
 import { Address } from 'viem';
 import { lazy } from 'react';
-import { MetaMask, Web3AuthLogo } from '../assets';
-import { ConnectorNames } from './constants';
+import { Ethereum, EthereumColored, MetaMask, Web3AuthLogo } from '../assets';
+import { ConnectorNames, TokenNames } from './constants';
 
 export const lazyLoad = (path: string, namedExport: string) =>
   lazy(() => import(path).then((module) => ({ default: module[namedExport] })));
@@ -16,6 +16,10 @@ export const logoFor = (attribute: string) => {
       return MetaMask;
     case ConnectorNames.Web3Auth:
       return Web3AuthLogo;
+    case TokenNames.Mainnet:
+      return Ethereum;
+    case TokenNames.Sepolia:
+      return EthereumColored;
     default:
       return undefined;
   }
