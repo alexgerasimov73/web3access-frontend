@@ -59,7 +59,7 @@ export const Connectors = () => {
       w={480}
       p="24px 32px 56px"
       borderRadius={16}
-      border="1px"
+      border="2px"
       borderColor="brand.800">
       <VStack>
         <Heading as="h2">Sign in</Heading>

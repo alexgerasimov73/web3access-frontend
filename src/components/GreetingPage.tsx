@@ -18,7 +18,7 @@ export const GreetingPage = () => {
 
   return (
     <Flex justify="center" align="center" h="100vh">
-      <HStack w="1024px" h="70vh">
+      <HStack w="1024px" h="70vh" gap="1rem">
         <VStack
           className={getBlockClass('login')}
           align="flex-start"

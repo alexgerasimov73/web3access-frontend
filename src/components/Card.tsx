@@ -13,7 +13,7 @@ export const Card = ({ children, title }: Props) => (
     w={480}
     p="48px 32px 56px"
     borderRadius={16}
-    border="1px"
+    border="2px"
     borderColor="brand.800">
     <Heading as="h3" alignSelf="center" size="lg">
       {title}
