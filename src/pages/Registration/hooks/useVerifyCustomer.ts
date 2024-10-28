@@ -1,11 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
+import { useToast } from '@chakra-ui/react';
 import { verifyCustomerService } from '../../../services/RegistrationService';
 import { TAxiosError } from '../../../helpers/constants';
 import type { IRegistrationResponse, TVerifyCustomerResponse } from '../types';
-import { useToast } from '@chakra-ui/react';
-import { store } from '../../../store/store';
+import { useStore } from '../../../store/useStore';
 
 export const useVerifyCustomer = (refreshData: (data: IRegistrationResponse) => void) => {
+  const setUser = useStore((state) => state.setUser);
   const toast = useToast();
 
   const { isPending, mutate: verifyCustomer } = useMutation({
@@ -13,8 +14,7 @@ export const useVerifyCustomer = (refreshData: (data: IRegistrationResponse) => 
     mutationFn: (data: TVerifyCustomerResponse) => verifyCustomerService(data),
     onSuccess: (response) => {
       localStorage.setItem('token', response.data.user.accessToken);
-      store.setAuth(true);
-      store.setUser(response.data.user.user);
+      setUser(response.data.user.user);
 
       toast({
         title: 'Perfect!',

@@ -1,10 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
 import { useToast } from '@chakra-ui/react';
-import { store } from '../store/store';
 import { ILoginResponse, TAxiosError } from '../helpers/constants';
 import { loginService } from '../services/AuthService';
+import { useStore } from '../store/useStore';
 
 export const useLogin = () => {
+  const setUser = useStore((state) => state.setUser);
   const toast = useToast();
 
   const { mutate: login } = useMutation({
@@ -17,7 +18,7 @@ export const useLogin = () => {
         status: 'success',
       });
       localStorage.setItem('token', response.data.accessToken);
-      store.setUser(response.data.user);
+      setUser(response.data.user);
     },
     onError: (err: TAxiosError) =>
       toast({

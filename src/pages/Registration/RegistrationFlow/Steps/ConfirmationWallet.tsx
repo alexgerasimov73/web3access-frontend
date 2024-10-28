@@ -5,21 +5,22 @@ import { Card } from '../../../../components/Card';
 import { formatDateForSignature } from '../../../../helpers/utils';
 import type { StepProps } from '../../types';
 import { useConfirmWallet } from '../../hooks/useConfirmWallet';
-import { store } from '../../../../store/store';
+import { useStore } from '../../../../store/useStore';
 
 export const ConfirmationWallet = ({ data, refreshData }: StepProps) => {
   const { address } = useAccount();
   const { data: walletClient } = useWalletClient();
   const { confirmWallet } = useConfirmWallet(refreshData);
+  const settings = useStore((state) => state.settings);
   const [isSigning, setIsSigning] = useState(false);
 
   const handleSubmit = () => {
-    if (!store.settings || !walletClient || !address) return;
+    if (!settings || !walletClient || !address) return;
 
     setIsSigning(true);
 
     const transmittedAt = formatDateForSignature(new Date(Date.now()));
-    const digest = store.settings?.confirmEthAddressTemplate
+    const digest = settings?.confirmEthAddressTemplate
       .replace('{{full_name}}', `${data.firstName} ${data.lastName}`)
       .replace('{{iso8601_timestamp}}', transmittedAt)
       .replace('{{eth_address}}', `${address}`);

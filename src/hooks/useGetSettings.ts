@@ -1,13 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import { getSettingsSevice } from '../services/UserService';
-import { store } from '../store/store';
+import { useStore } from '../store/useStore';
 
-export const useGetSettings = () =>
-  useQuery({
+export const useGetSettings = () => {
+  const setSettings = useStore((state) => state.setSettings);
+
+  return useQuery({
     queryKey: ['get settings'],
     queryFn: async () => {
       const response = await getSettingsSevice();
-      store.setSettings(response.data);
+      setSettings(response.data);
 
       return response.data;
     },
@@ -15,3 +17,4 @@ export const useGetSettings = () =>
     retry: false,
     staleTime: Infinity,
   });
+};

@@ -1,18 +1,19 @@
 import { useMutation } from '@tanstack/react-query';
 import { useToast } from '@chakra-ui/react';
-import { store } from '../store/store';
 import { logoutService } from '../services/AuthService';
 import { TAxiosError } from '../helpers/constants';
+import { useStore } from '../store/useStore';
 
 export const useLogout = () => {
   const toast = useToast();
+  const setUser = useStore((state) => state.setUser);
 
   const { mutate: logout } = useMutation({
     mutationKey: ['log out'],
     mutationFn: () => logoutService(),
     onSuccess: () => {
       localStorage.removeItem('token');
-      store.setUser(null);
+      setUser(null);
     },
     onError: (err: TAxiosError) =>
       toast({

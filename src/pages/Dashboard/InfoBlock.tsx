@@ -1,30 +1,30 @@
-import { Link, Text, VStack } from '@chakra-ui/react';
-import { store } from '../../store/store';
-import { observer } from 'mobx-react-lite';
 import { useAccount } from 'wagmi';
+import { Link, Text, VStack } from '@chakra-ui/react';
+import { useStore } from '../../store/useStore';
 
-export const InfoBlock = observer(() => {
+export const InfoBlock = () => {
   const { address, chain } = useAccount();
+  const user = useStore((state) => state.user);
 
   return (
     <VStack align="flex-start" spacing={2}>
       <Text>
-        Email: <b>{store.user?.emailAddress}</b>
+        Email: <b>{user?.emailAddress}</b>
       </Text>
       <Text>
         Address::&nbsp;
         <Link href={`${chain?.blockExplorers?.default.url}/address/${address}`} isExternal>
-          <b>{store.user?.ethAddress}</b>
+          <b>{user?.ethAddress}</b>
         </Link>
       </Text>
-      {store.user?.linkedIn && (
+      {user?.linkedIn && (
         <Text>
           LinkedIn:&nbsp;
-          <Link href={store.user?.linkedIn} isExternal>
-            <b>{store.user?.linkedIn}</b>
+          <Link href={user?.linkedIn} isExternal>
+            <b>{user?.linkedIn}</b>
           </Link>
         </Text>
       )}
     </VStack>
   );
-});
+};
