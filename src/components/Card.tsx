@@ -1,24 +1,21 @@
-import { Flex, Heading } from '@chakra-ui/react';
+import { Box, Flex, Heading } from '@chakra-ui/react';
 import type { PropsWithChildren } from 'react';
 
 interface Props extends PropsWithChildren {
-  readonly title: string;
+  readonly title?: string;
+  readonly width?: number;
 }
 
-export const Card = ({ children, title }: Props) => (
-  <Flex
-    className="RotationAnimation"
-    direction="column"
-    gap={10}
-    w={480}
-    p="48px 32px 56px"
-    borderRadius={16}
-    border="2px"
-    borderColor="brand.800">
-    <Heading as="h3" alignSelf="center" size="lg">
-      {title}
-    </Heading>
+export const Card = ({ children, title, width = 480 }: Props) => (
+  <Box className="RotationAnimation" w={width}>
+    <Flex className="Card" w="full" direction="column" gap={10}>
+      {title && (
+        <Heading as="h3" alignSelf="center" size="lg">
+          {title}
+        </Heading>
+      )}
 
-    {children}
-  </Flex>
+      {children}
+    </Flex>
+  </Box>
 );

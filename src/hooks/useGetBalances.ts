@@ -15,7 +15,7 @@ interface TokenData {
 export const useGetBalances = () => {
   const { address } = useAccount();
 
-  const { data: balances } = useQuery<ReadonlyArray<TokenData>>({
+  const { data: balances, isLoading } = useQuery<ReadonlyArray<TokenData>>({
     queryKey: ['balances', address],
     queryFn: async () => {
       if (!address) return [];
@@ -44,5 +44,5 @@ export const useGetBalances = () => {
     staleTime: Infinity,
   });
 
-  return balances;
+  return { balances, isLoading };
 };

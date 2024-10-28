@@ -1,6 +1,7 @@
 import { Divider, Flex, Heading, HStack, Image } from '@chakra-ui/react';
 import { Balances } from './Balances';
 import { InfoBlock } from './InfoBlock';
+import { Card } from '../../components/Card';
 import { useStore } from '../../store/useStore';
 
 export const Dashboard = () => {
@@ -8,15 +9,7 @@ export const Dashboard = () => {
 
   return (
     <Flex justify="center" align="center" h="100vh">
-      <Flex
-        className="RotationAnimation"
-        direction="column"
-        gap={10}
-        w={800}
-        p="24px 32px 56px"
-        borderRadius={16}
-        border="2px"
-        borderColor="brand.800">
+      <Card width={800}>
         <HStack justify="space-between">
           <Heading as="h2">
             Hi, {user?.firstName} {user?.lastName}
@@ -36,7 +29,7 @@ export const Dashboard = () => {
         <Divider borderColor="brand.800" />
 
         <Balances />
-      </Flex>
+      </Card>
     </Flex>
   );
 };

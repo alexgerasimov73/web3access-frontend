@@ -1,10 +1,13 @@
 import { HStack, Image, Link, VStack } from '@chakra-ui/react';
+import { Loader } from '../../components/Loader';
 import { useGetBalances } from '../../hooks/useGetBalances';
 import { logoFor } from '../../helpers/utils';
 import { TokenNames } from '../../helpers/constants';
 
 export const Balances = () => {
-  const balances = useGetBalances();
+  const { balances, isLoading } = useGetBalances();
+
+  if (isLoading) return <Loader fullScreen={false} label="Loading balances..." />;
 
   return (
     <VStack align="flex-start" spacing={2}>

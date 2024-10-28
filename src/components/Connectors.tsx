@@ -17,6 +17,7 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
+import { Card } from './Card';
 import { GoogleColor, LinkedInColor, MetaMask } from '../assets';
 import { ConnectorNames } from '../helpers/constants';
 
@@ -52,15 +53,7 @@ export const Connectors = () => {
   };
 
   return (
-    <Flex
-      className="RotationAnimation"
-      direction="column"
-      gap={10}
-      w={480}
-      p="24px 32px 56px"
-      borderRadius={16}
-      border="2px"
-      borderColor="brand.800">
+    <Card>
       <VStack>
         <Heading as="h2">Sign in</Heading>
         <Text>Connect your wallet with one click</Text>
@@ -111,6 +104,6 @@ export const Connectors = () => {
           Connect with MetaMask
         </Button>
       </Box>
-    </Flex>
+    </Card>
   );
 };
