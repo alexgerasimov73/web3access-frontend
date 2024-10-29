@@ -1,5 +1,3 @@
-# ⚠️ 🚧 🏗️ WIP
-
 # Web3Access
 
 **Web3Access** is a Web3 project showcasing user authentication, onboarding, and wallet connection.
@@ -20,13 +18,14 @@ Future enhancements may include additional functionality interacting with blockc
 - **Frontend**: [React](https://reactjs.org/), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vitejs.dev/)
 - **Authentication**: [Web3Auth](https://web3auth.io/)
 - **Wallet Connection**: [Wagmi](https://wagmi.sh/)
+- **Routing**: [TanStack Router](https://tanstack.com/router/latest)
 - **UI Components**: [Chakra UI](https://chakra-ui.com/)
-- **Data Fetching**: [React TanStack Query](https://tanstack.com/query/v4)
-- **State Management**: [MobX](https://mobx.js.org/README.html)
+- **Data Fetching**: [React TanStack Query](https://tanstack.com/query/latest)
+- **State Management**: [Zustand](https://zustand.docs.pmnd.rs/getting-started/introduction)
 
 ## Demo
 
-Coming soon...
+You can open demo on [Render](https://web3access-frontend.onrender.com/).
 
 ### Prerequisites
 
@@ -55,7 +54,7 @@ Open http://localhost:5173 with your browser to see the application.
 
 ## API Integration
 
-This frontend is integrated with the backend API, which is hosted on Render and can be accessed at: [Coming soon](). The backend [repo](https://github.com/alexgerasimov73/web3access-backend)
+This frontend is integrated with the backend API, which is hosted on Render and can be accessed at: [web3access app API](https://web3access-backend.onrender.com). The backend [repo](https://github.com/alexgerasimov73/web3access-backend)
 
 ## Styling
 
@@ -63,7 +62,7 @@ The application is styled using [Sass](https://sass-lang.com/) and leverages [Ch
 
 ## Deployment
 
-Coming soon...
+The backend is hosted on [Render](https://render.com/). The database is hosted on [MongoDB](https://www.mongodb.com/).
 
 ## Future Enhancements
 
