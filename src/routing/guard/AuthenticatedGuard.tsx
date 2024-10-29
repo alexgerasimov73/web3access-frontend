@@ -1,8 +1,8 @@
-import { Outlet } from 'react-router-dom';
 import { GreetingPage } from '../../components/GreetingPage';
 import { useCheckAuth } from '../../hooks/useCheckAuth';
 import { Loader } from '../../components/Loader';
 import { useStore } from '../../store/useStore';
+import { Dashboard } from '../../pages/Dashboard/Dashboard';
 
 export const AuthenticatedGuard = () => {
   const { isLoading } = useCheckAuth();
@@ -12,5 +12,5 @@ export const AuthenticatedGuard = () => {
     return <Loader />;
   }
 
-  return user ? <Outlet /> : <GreetingPage />;
+  return user ? <Dashboard /> : <GreetingPage />;
 };

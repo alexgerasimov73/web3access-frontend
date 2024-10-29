@@ -1,5 +1,5 @@
 import { useAccount, useDisconnect } from 'wagmi';
-import { Outlet } from 'react-router-dom';
+import { Outlet } from '@tanstack/react-router';
 import {
   Button,
   HStack,

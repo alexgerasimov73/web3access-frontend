@@ -1,10 +1,6 @@
 import { Address } from 'viem';
-import { lazy } from 'react';
 import { Ethereum, EthereumColored, MetaMask, Web3AuthLogo } from '../assets';
 import { ConnectorNames, TokenNames } from './constants';
-
-export const lazyLoad = (path: string, namedExport: string) =>
-  lazy(() => import(path).then((module) => ({ default: module[namedExport] })));
 
 export const assertUnreachable = (x: never): never => {
   throw new Error(`Value should be 'never' but found ${JSON.stringify(x)} instead.`);

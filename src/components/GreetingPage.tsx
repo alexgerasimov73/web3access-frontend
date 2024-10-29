@@ -1,6 +1,6 @@
 import { Button, Flex, Heading, HStack, VStack } from '@chakra-ui/react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@tanstack/react-router';
 import { Login } from './Login';
 import { LoginOrRegistration } from '../helpers/constants';
 

@@ -1,9 +1,9 @@
-import { Outlet } from 'react-router-dom';
 import { useAccount } from 'wagmi';
 import { ConnectWallet } from '../../components/ConnectWallet';
+import { WalletBadge } from '../../components/WalletBadge';
 
 export const ConnectedWalletGuard = () => {
   const { isConnected } = useAccount();
 
-  return isConnected ? <Outlet /> : <ConnectWallet />;
+  return isConnected ? <WalletBadge /> : <ConnectWallet />;
 };

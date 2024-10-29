@@ -1,5 +1,5 @@
 import { Button, Text } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link } from '@tanstack/react-router';
 import { Card } from '../../../../components/Card';
 
 interface Props {
