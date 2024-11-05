@@ -1,5 +1,4 @@
 import { useAccount, useDisconnect } from 'wagmi';
-import { Outlet } from '@tanstack/react-router';
 import {
   Button,
   HStack,
@@ -34,53 +33,43 @@ export const WalletBadge = () => {
   if (isLoading) return <Loader label="Loading settings..." />;
 
   return (
-    <>
-      <Popover isLazy offset={[-208, 12]} isOpen={isOpen} onClose={onClose} onOpen={onOpen}>
-        <PopoverTrigger>
-          <Button
-            pos="fixed"
-            top={4}
-            right={6}
-            variant="link"
+    <Popover isLazy offset={[-208, 12]} isOpen={isOpen} onClose={onClose} onOpen={onOpen}>
+      <PopoverTrigger>
+        <Button
+          variant="link"
+          transition="transform 0.2s"
+          _hover={{
+            transform: 'translateX(-2px)',
+          }}>
+          <Image
+            src={Wallet}
+            alt="wallet"
             transition="transform 0.2s"
-            _hover={{
-              transform: 'translateX(-2px)',
-            }}>
-            <Image
-              src={Wallet}
-              alt="wallet"
-              transition="transform 0.2s"
-              transform={`${isOpen ? 'rotate(35deg)' : 'unset'}`}
-            />
+            transform={`${isOpen ? 'rotate(35deg)' : 'unset'}`}
+          />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent minW="480px" p={4} bg="brand.500" color="brand.900">
+        <VStack align="flex-start" spacing={2}>
+          <Button alignSelf="flex-end" colorScheme="red" variant="link" onClick={handleDisconnect}>
+            {user ? 'Logout & Disconnect' : 'Disconnect'}
           </Button>
-        </PopoverTrigger>
-        <PopoverContent minW="480px" p={4} bg="brand.500" color="brand.900">
-          <VStack align="flex-start" spacing={2}>
-            <Button
-              alignSelf="flex-end"
-              colorScheme="red"
-              variant="link"
-              onClick={handleDisconnect}>
-              {user ? 'Logout & Disconnect' : 'Disconnect'}
-            </Button>
 
-            {connector && chain && (
-              <HStack spacing={2}>
-                <Image boxSize="24px" src={logoFor(connector.name)} />
-                <Text>
-                  Connected to the <b>{chain.name}</b> network via <b>{connector.name}</b>
-                </Text>
-              </HStack>
-            )}
-
+          {connector && chain && (
             <HStack spacing={2}>
-              <Image boxSize="24px" src={AvocadoAvatar} />
-              <Text>{address}</Text>
+              <Image boxSize="24px" src={logoFor(connector.name)} />
+              <Text>
+                Connected to the <b>{chain.name}</b> network via <b>{connector.name}</b>
+              </Text>
             </HStack>
-          </VStack>
-        </PopoverContent>
-      </Popover>
-      <Outlet />
-    </>
+          )}
+
+          <HStack spacing={2}>
+            <Image boxSize="24px" src={AvocadoAvatar} />
+            <Text>{address}</Text>
+          </HStack>
+        </VStack>
+      </PopoverContent>
+    </Popover>
   );
 };

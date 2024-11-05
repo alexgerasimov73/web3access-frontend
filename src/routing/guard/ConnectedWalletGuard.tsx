@@ -1,11 +1,19 @@
 import { useAccount } from 'wagmi';
+import { Outlet } from '@tanstack/react-router';
 import { ConnectWallet } from '../../components/ConnectWallet';
-import { WalletBadge } from '../../components/WalletBadge';
+import { Header } from '../../components/Header';
 import { useLaunchServer } from '../../hooks/useLaunchServer';
 
 export const ConnectedWalletGuard = () => {
   const { isConnected } = useAccount();
   const {} = useLaunchServer();
 
-  return isConnected ? <WalletBadge /> : <ConnectWallet />;
+  return isConnected ? (
+    <>
+      <Header />
+      <Outlet />
+    </>
+  ) : (
+    <ConnectWallet />
+  );
 };
