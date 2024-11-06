@@ -10,10 +10,8 @@ import {
   useDisclosure,
   VStack,
 } from '@chakra-ui/react';
-import { Loader } from './Loader';
 import { AvocadoAvatar, Wallet } from '../assets';
 import { logoFor } from '../helpers/utils';
-import { useGetSettings } from '../hooks/useGetSettings';
 import { useLogout } from '../hooks/useLogout';
 import { useStore } from '../store/useStore';
 
@@ -21,7 +19,6 @@ export const WalletBadge = () => {
   const { address, chain, connector } = useAccount();
   const { disconnect } = useDisconnect();
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const { isLoading } = useGetSettings();
   const logout = useLogout();
   const user = useStore((state) => state.user);
 
@@ -29,8 +26,6 @@ export const WalletBadge = () => {
     user && logout();
     disconnect();
   };
-
-  if (isLoading) return <Loader label="Loading settings..." />;
 
   return (
     <Popover isLazy offset={[-208, 12]} isOpen={isOpen} onClose={onClose} onOpen={onOpen}>
