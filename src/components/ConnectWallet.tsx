@@ -11,9 +11,9 @@ export const ConnectWallet = () => {
   const getContent = () => {
     if (isConnecting || isReconnecting) return <Loader />;
 
-    if (!isConnected) return <Connectors />;
-
     if (chainId !== sepolia.id) return <SwitchNetwork />;
+
+    if (!isConnected) return <Connectors />;
   };
 
   return (
