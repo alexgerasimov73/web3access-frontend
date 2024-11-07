@@ -25,7 +25,6 @@ export const Web3AuthConnectorInstance = (
     chainConfig,
     privateKeyProvider: new EthereumPrivateKeyProvider({ config: { chainConfig } }),
     web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_DEVNET,
-    // enableLogging: true,
   });
 
   web3AuthInstance.configureAdapter(
@@ -35,15 +34,6 @@ export const Web3AuthConnectorInstance = (
       },
     }),
   );
-
-  // const walletServicesPlugin = new WalletServicesPlugin({
-  //   walletInitOptions: {
-  //     whiteLabel: {
-  //       showWidgetButton: true,
-  //     },
-  //   },
-  // });
-  // web3AuthInstance.addPlugin(walletServicesPlugin);
 
   return Web3AuthConnector({
     web3AuthInstance,
