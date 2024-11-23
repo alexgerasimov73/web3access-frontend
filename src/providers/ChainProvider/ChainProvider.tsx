@@ -6,11 +6,11 @@ import { injected } from 'wagmi/connectors';
 import { Web3AuthConnectorInstance } from './Web3AuthConnectorInstance';
 
 export const config = createConfig({
-  chains: [mainnet, sepolia],
-  connectors: [Web3AuthConnectorInstance(sepolia), injected({ target: 'metaMask' })],
+  chains: [sepolia, mainnet],
+  connectors: [Web3AuthConnectorInstance([sepolia, mainnet]), injected({ target: 'metaMask' })],
   transports: {
-    [mainnet.id]: http(),
     [sepolia.id]: http(),
+    [mainnet.id]: http(),
   },
 });
 

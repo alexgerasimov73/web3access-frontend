@@ -1,5 +1,4 @@
 import { OpenloginLoginParams } from '@web3auth/openlogin-adapter';
-import { sepolia } from 'viem/chains';
 import { useConnect } from 'wagmi';
 import { useForm } from 'react-hook-form';
 import { Web3AuthConnectorInstance } from '../providers/ChainProvider/Web3AuthConnectorInstance';
@@ -18,6 +17,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { Card } from './Card';
+import { config } from '../providers/ChainProvider/ChainProvider';
 import { GoogleColor, LinkedInColor, MetaMask } from '../assets';
 import { ConnectorNames } from '../helpers/constants';
 
@@ -35,7 +35,7 @@ export const Connectors = () => {
   } = useForm<FormData>();
 
   const connectWithWeb3Auth = (options?: OpenloginLoginParams) =>
-    connect({ connector: Web3AuthConnectorInstance(sepolia, options) });
+    connect({ connector: Web3AuthConnectorInstance(config.chains, options) });
 
   const loginWithGoogle = () => connectWithWeb3Auth();
 
