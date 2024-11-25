@@ -1,7 +1,7 @@
 import type { AxiosResponse } from 'axios';
 import type { IAuthResponse } from '../models/models';
 import { api, apiWithAuth } from '../interceptors/interceptors';
-import { ILoginResponse } from '../helpers/constants';
+import { ILoginResponse } from '../helpers/types';
 
 export const refreshService = async (): Promise<AxiosResponse<IAuthResponse>> =>
   await api.get<IAuthResponse>(`${import.meta.env.VITE_API_URL}/refresh`);

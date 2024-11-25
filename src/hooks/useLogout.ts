@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { useToast } from '@chakra-ui/react';
 import { logoutService } from '../services/AuthService';
-import { TAxiosError } from '../helpers/constants';
 import { useStore } from '../store/useStore';
+import { TAxiosError } from '../helpers/types';
 
 export const useLogout = () => {
   const toast = useToast();

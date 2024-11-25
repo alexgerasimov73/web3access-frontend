@@ -1,4 +1,4 @@
-import { TAxiosError } from '../helpers/constants';
+import { TAxiosError } from '../helpers/types';
 
 export const errorCatch = (error: TAxiosError) => {
   const message = error?.response?.data?.message;

@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { useToast } from '@chakra-ui/react';
-import { ILoginResponse, TAxiosError } from '../helpers/constants';
 import { loginService } from '../services/AuthService';
 import { useStore } from '../store/useStore';
+import { ILoginResponse, TAxiosError } from '../helpers/types';
 
 export const useLogin = () => {
   const setUser = useStore((state) => state.setUser);
