@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { confirmWalletService } from '../../../services/RegistrationService';
-import { TAxiosError } from '../../../helpers/constants';
 import type { IRegistrationResponse, TConfirmWalletResponse } from '../types';
 import { useToast } from '@chakra-ui/react';
+import { TAxiosError } from '../../../helpers/types';
 
 export const useConfirmWallet = (refreshData: (data: IRegistrationResponse) => void) => {
   const toast = useToast();

@@ -19,7 +19,7 @@ import {
 import { Card } from './Card';
 import { config } from '../providers/ChainProvider/ChainProvider';
 import { GoogleColor, LinkedInColor, MetaMask } from '../assets';
-import { ConnectorNames } from '../helpers/constants';
+import { ConnectorNames } from '../helpers/types';
 
 interface FormData {
   readonly emailAddress: string;

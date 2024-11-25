@@ -8,6 +8,4 @@ export const useLaunchServer = () =>
   useQuery({
     queryKey: ['launch server'],
     queryFn: async () => await launchServerSevice(),
-    retry: false,
-    staleTime: Infinity,
   });

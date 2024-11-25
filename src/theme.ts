@@ -17,7 +17,7 @@ const inputSelectStyles = {
   },
 };
 
-const theme = extendTheme(
+export const theme = extendTheme(
   {
     config,
     colors: {
@@ -56,5 +56,3 @@ const theme = extendTheme(
     components: ['Button', 'Checkbox', 'Stepper'],
   }),
 );
-
-export default theme;

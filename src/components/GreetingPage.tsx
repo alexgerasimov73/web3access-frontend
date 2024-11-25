@@ -2,7 +2,7 @@ import { Button, Flex, Heading, HStack, VStack } from '@chakra-ui/react';
 import { useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { Login } from './Login';
-import { LoginOrRegistration } from '../helpers/constants';
+import { LoginOrRegistration } from '../helpers/types';
 
 export const GreetingPage = () => {
   const [isPending, setIsPending] = useState(false);

@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { startRegistrationService } from '../../../services/RegistrationService';
-import { TAxiosError } from '../../../helpers/constants';
 import { useToast } from '@chakra-ui/react';
 import { StartRegistrationStep } from '../types';
+import { TAxiosError } from '../../../helpers/types';
 
 export const useStartRegistration = (setStep: (step: StartRegistrationStep) => void) => {
   const toast = useToast();

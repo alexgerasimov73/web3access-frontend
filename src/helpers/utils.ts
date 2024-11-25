@@ -1,6 +1,6 @@
 import { Address } from 'viem';
 import { Ethereum, EthereumColored, MetaMask, Web3AuthLogo } from '../assets';
-import { ConnectorNames, TokenNames } from './constants';
+import { ConnectorNames, TokenNames } from './types';
 
 export const assertUnreachable = (x: never): never => {
   throw new Error(`Value should be 'never' but found ${JSON.stringify(x)} instead.`);

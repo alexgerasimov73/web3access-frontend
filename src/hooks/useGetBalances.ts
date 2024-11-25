@@ -4,7 +4,7 @@ import { mainnet } from 'wagmi/chains';
 import { formatUnits } from 'viem';
 import { useQuery } from '@tanstack/react-query';
 import { config } from '../providers/ChainProvider/ChainProvider';
-import { TokenNames } from '../helpers/constants';
+import { TokenNames } from '../helpers/types';
 
 interface TokenData {
   readonly formatted: string;
@@ -39,9 +39,6 @@ export const useGetBalances = () => {
       return tokens;
     },
     enabled: !!address,
-    refetchOnWindowFocus: false,
-    retry: false,
-    staleTime: Infinity,
   });
 
   return { balances, isLoading };

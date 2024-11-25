@@ -13,8 +13,5 @@ export const useGetSettings = () => {
 
       return response.data;
     },
-    refetchOnWindowFocus: false,
-    retry: false,
-    staleTime: Infinity,
   });
 };

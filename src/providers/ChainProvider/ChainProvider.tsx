@@ -15,7 +15,15 @@ export const config = createConfig({
 });
 
 export const ChainProvider = ({ children }: PropsWithChildren) => {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        retry: false,
+        staleTime: Infinity,
+      },
+    },
+  });
 
   return (
     <WagmiProvider config={config}>

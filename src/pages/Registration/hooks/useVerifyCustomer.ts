@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 import { useToast } from '@chakra-ui/react';
 import { verifyCustomerService } from '../../../services/RegistrationService';
-import { TAxiosError } from '../../../helpers/constants';
 import type { IRegistrationResponse, TVerifyCustomerResponse } from '../types';
 import { useStore } from '../../../store/useStore';
+import { TAxiosError } from '../../../helpers/types';
 
 export const useVerifyCustomer = (refreshData: (data: IRegistrationResponse) => void) => {
   const setUser = useStore((state) => state.setUser);

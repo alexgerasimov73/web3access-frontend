@@ -15,8 +15,5 @@ export const useCheckAuth = () => {
       return response.data.user;
     },
     enabled: !!localStorage.getItem('token'),
-    refetchOnWindowFocus: false,
-    retry: false,
-    staleTime: Infinity,
   });
 };

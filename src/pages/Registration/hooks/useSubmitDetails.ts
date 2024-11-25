@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { submitDetailsService } from '../../../services/RegistrationService';
-import { TAxiosError } from '../../../helpers/constants';
 import type { IRegistrationResponse, TSubmitDetailsResponse } from '../types';
 import { useToast } from '@chakra-ui/react';
+import { TAxiosError } from '../../../helpers/types';
 
 export const useSubmitDetails = (refreshData: (data: IRegistrationResponse) => void) => {
   const toast = useToast();

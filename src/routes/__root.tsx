@@ -1,5 +1,5 @@
 import { createRootRoute } from '@tanstack/react-router';
-import { ConnectedWalletGuard } from '../routing/guard/ConnectedWalletGuard';
+import { ConnectedWalletGuard } from '../providers/guard/ConnectedWalletGuard';
 import { lazy, Suspense } from 'react';
 
 const TanStackRouterDevtools =
