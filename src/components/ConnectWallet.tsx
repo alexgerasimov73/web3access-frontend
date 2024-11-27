@@ -1,25 +1,26 @@
-import { useAccount, useChainId } from 'wagmi';
-import { sepolia } from 'wagmi/chains';
-import { Flex } from '@chakra-ui/react';
-import { Connectors } from './Connectors';
-import { Loader } from './Loader';
-import { SwitchNetwork } from './SwitchNetwork';
+import { Flex } from '@chakra-ui/react'
+import { useAccount, useChainId } from 'wagmi'
+import { sepolia } from 'wagmi/chains'
+
+import { Connectors } from './Connectors'
+import { Loader } from './Loader'
+import { SwitchNetwork } from './SwitchNetwork'
 
 export const ConnectWallet = () => {
-  const chainId = useChainId();
-  const { isConnected, isConnecting, isReconnecting } = useAccount();
+	const chainId = useChainId()
+	const { isConnected, isConnecting, isReconnecting } = useAccount()
 
-  const getContent = () => {
-    if (isConnecting || isReconnecting) return <Loader />;
+	const getContent = () => {
+		if (isConnecting || isReconnecting) return <Loader />
 
-    if (chainId !== sepolia.id) return <SwitchNetwork />;
+		if (chainId !== sepolia.id) return <SwitchNetwork />
 
-    if (!isConnected) return <Connectors />;
-  };
+		if (!isConnected) return <Connectors />
+	}
 
-  return (
-    <Flex justify="center" align="center" h="100vh">
-      {getContent()}
-    </Flex>
-  );
-};
+	return (
+		<Flex justify='center' align='center' h='100vh'>
+			{getContent()}
+		</Flex>
+	)
+}
