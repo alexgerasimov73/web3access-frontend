@@ -1,30 +1,34 @@
-import { useMutation } from '@tanstack/react-query';
-import { startRegistrationService } from '../../../services/RegistrationService';
-import { useToast } from '@chakra-ui/react';
-import { StartRegistrationStep } from '../types';
-import { TAxiosError } from '../../../helpers/types';
+import { useToast } from '@chakra-ui/react'
+import { useMutation } from '@tanstack/react-query'
 
-export const useStartRegistration = (setStep: (step: StartRegistrationStep) => void) => {
-  const toast = useToast();
+import { TAxiosError } from '../../../helpers/types'
+import { startRegistrationService } from '../../../services/RegistrationService'
+import { StartRegistrationStep } from '../types'
 
-  const { isPending, mutate: startRegistration } = useMutation({
-    mutationKey: ['start registration'],
-    mutationFn: (emailAddress: string) => startRegistrationService(emailAddress),
-    onSuccess: () => {
-      toast({
-        title: 'Well done!',
-        description: 'Your email address was successfully sent',
-        status: 'success',
-      });
-      setStep(StartRegistrationStep.EmailSent);
-    },
-    onError: (err: TAxiosError) =>
-      toast({
-        title: 'Oh no!',
-        description: `An error has occurred: ${err.response?.data.message}`,
-        status: 'error',
-      }),
-  });
+export const useStartRegistration = (
+	setStep: (step: StartRegistrationStep) => void
+) => {
+	const toast = useToast()
 
-  return { isPending, startRegistration };
-};
+	const { isPending, mutate: startRegistration } = useMutation({
+		mutationKey: ['start registration'],
+		mutationFn: (emailAddress: string) =>
+			startRegistrationService(emailAddress),
+		onSuccess: () => {
+			toast({
+				title: 'Well done!',
+				description: 'Your email address was successfully sent',
+				status: 'success'
+			})
+			setStep(StartRegistrationStep.EmailSent)
+		},
+		onError: (err: TAxiosError) =>
+			toast({
+				title: 'Oh no!',
+				description: `An error has occurred: ${err.response?.data.message}`,
+				status: 'error'
+			})
+	})
+
+	return { isPending, startRegistration }
+}

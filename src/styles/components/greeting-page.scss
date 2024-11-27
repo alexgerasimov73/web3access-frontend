@@ -1,61 +1,61 @@
 .GreetingPage-login,
 .GreetingPage-registration {
-  position: relative;
-  gap: 0;
-  width: 50%;
-  height: 80%;
+	position: relative;
+	gap: 0;
+	width: 50%;
+	height: 80%;
 
-  &::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 2px solid $green;
-    transition: transform 0.3s ease;
-  }
+	&::before {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		border: 2px solid $green;
+		transition: transform 0.3s ease;
+	}
 }
 
 .GreetingPage-login {
-  align-self: flex-start;
-  align-items: flex-start;
-  padding: 5rem 1.25rem 1.25rem;
-  animation: slideFromTop 0.7s $easeInOutBack forwards;
+	align-self: flex-start;
+	align-items: flex-start;
+	padding: 5rem 1.25rem 1.25rem;
+	animation: slideFromTop 0.7s $easeInOutBack forwards;
 
-  &::before {
-    top: 0;
-    left: 0;
-    border-top-left-radius: 1rem;
-    transform-origin: 0 0;
-  }
+	&::before {
+		top: 0;
+		left: 0;
+		border-top-left-radius: 1rem;
+		transform-origin: 0 0;
+	}
 
-  &.hovered::before {
-    transform: scale(1.1);
-  }
+	&.hovered::before {
+		transform: scale(1.1);
+	}
 
-  &.other-hovered::before {
-    transform: scale(0.9);
-  }
+	&.other-hovered::before {
+		transform: scale(0.9);
+	}
 }
 
 .GreetingPage-registration {
-  align-self: flex-end;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding: 1.25rem 1.25rem 5rem;
-  animation: slideFromBottom 0.7s $easeInOutBack forwards;
+	align-self: flex-end;
+	align-items: flex-end;
+	justify-content: flex-end;
+	padding: 1.25rem 1.25rem 5rem;
+	animation: slideFromBottom 0.7s $easeInOutBack forwards;
 
-  &::before {
-    bottom: 0;
-    right: 0;
-    border-bottom-right-radius: 1rem;
-    transform-origin: 100% 100%;
-  }
+	&::before {
+		bottom: 0;
+		right: 0;
+		border-bottom-right-radius: 1rem;
+		transform-origin: 100% 100%;
+	}
 
-  &.hovered::before {
-    transform: scale(1.1);
-  }
+	&.hovered::before {
+		transform: scale(1.1);
+	}
 
-  &.other-hovered::before {
-    transform: scale(0.9);
-  }
+	&.other-hovered::before {
+		transform: scale(0.9);
+	}
 }

@@ -1,16 +1,16 @@
-import { GreetingPage } from '../../components/GreetingPage';
-import { useCheckAuth } from '../../hooks/useCheckAuth';
-import { Loader } from '../../components/Loader';
-import { useStore } from '../../store/useStore';
-import { Dashboard } from '../../pages/Dashboard/Dashboard';
+import { GreetingPage } from '../../components/GreetingPage'
+import { Loader } from '../../components/Loader'
+import { useCheckAuth } from '../../hooks/useCheckAuth'
+import { Dashboard } from '../../pages/Dashboard/Dashboard'
+import { useStore } from '../../store/useStore'
 
 export const AuthenticatedGuard = () => {
-  const { isLoading } = useCheckAuth();
-  const user = useStore((state) => state.user);
+	const { isLoading } = useCheckAuth()
+	const user = useStore(state => state.user)
 
-  if (isLoading) {
-    return <Loader />;
-  }
+	if (isLoading) {
+		return <Loader />
+	}
 
-  return user ? <Dashboard /> : <GreetingPage />;
-};
+	return user ? <Dashboard /> : <GreetingPage />
+}

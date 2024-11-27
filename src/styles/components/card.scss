@@ -1,17 +1,17 @@
 .Card {
-  position: relative;
-  padding: 48px 32px 56px;
-  border-radius: 8px;
-  border: 2px solid $green;
-  background-color: $dark;
+	position: relative;
+	padding: 48px 32px 56px;
+	border-radius: 8px;
+	border: 2px solid $green;
+	background-color: $dark;
 
-  &:before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 8px;
-    border: 2px solid $green;
-    z-index: -1;
-    animation: $durationLong shift 2s $easeOutBack forwards;
-  }
+	&:before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: 8px;
+		border: 2px solid $green;
+		z-index: -1;
+		animation: $durationLong shift 2s $easeOutBack forwards;
+	}
 }
