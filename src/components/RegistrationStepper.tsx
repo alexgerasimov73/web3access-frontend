@@ -26,7 +26,7 @@ export const RegistrationStepper = ({ step, steps }: Props) => {
 
   useEffect(() => {
     setActiveStep(step);
-  }, [step, setActiveStep]);
+  }, [step]);
 
   return (
     <Stepper className="SlideFromTop" index={activeStep} pos="fixed" top="7rem" size="sm" gap="0">

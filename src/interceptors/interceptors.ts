@@ -2,6 +2,7 @@ import axios, { AxiosError, type CreateAxiosDefaults } from 'axios';
 import type { IAuthResponse } from '../models/models';
 import { errorCatch } from './error';
 import { JWT_EXPIRED, JWT_MUST_BE_PROVIDED } from '../helpers/constants';
+import { useToast } from '@chakra-ui/react';
 
 const options: CreateAxiosDefaults = {
   baseURL: import.meta.env.VITE_API_URL,
@@ -36,15 +37,19 @@ apiWithAuth.interceptors.response.use(
       !error.config.config._isRetry
     ) {
       originalRequest._isRetry = true;
+      const toast = useToast();
       try {
         const response = await api.get<IAuthResponse>(`${import.meta.env.VITE_API_URL}/refresh`);
-        // TODO: Create a common util for handling localStorsaage.
         localStorage.setItem('token', response.data.accessToken);
 
         return apiWithAuth.request(originalRequest);
       } catch (error) {
         if (error instanceof AxiosError && errorCatch(error) === JWT_EXPIRED) {
-          console.error('The user is unauthorized');
+          toast({
+            title: 'Oh no!',
+            description: `The user is unauthorized`,
+            status: 'error',
+          });
           localStorage.removeItem('token');
         }
       }

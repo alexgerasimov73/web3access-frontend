@@ -25,7 +25,6 @@ interface FormData {
   readonly emailAddress: string;
 }
 
-// TODO: Tidy up the component.
 export const Connectors = () => {
   const { connect, connectors } = useConnect();
   const {
@@ -45,7 +44,7 @@ export const Connectors = () => {
     connectWithWeb3Auth({ loginProvider: 'email_passwordless', login_hint: emailAddress });
 
   const loginWithMetaMask = () => {
-    connectors.map((connector) => {
+    connectors.forEach((connector) => {
       if (connector.name === ConnectorNames.MetaMask) {
         connect({ connector });
       }
