@@ -21,6 +21,7 @@ export const MainLayout = () => {
 				w='full'
 				h={16}
 				p={4}
+				zIndex={1}
 			>
 				<Logo />
 				<WalletBadge />

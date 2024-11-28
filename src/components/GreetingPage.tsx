@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { LoginOrRegistration } from '../helpers/types'
 
 import { Login } from './Login'
+import { SpaceBackground } from './SpaceBackground'
 
 export const GreetingPage = () => {
 	const [isPending, setIsPending] = useState(false)
@@ -22,7 +23,14 @@ export const GreetingPage = () => {
 		}`
 
 	return (
-		<Flex justify='center' align='center' h='100vh'>
+		<Flex
+			pos='relative'
+			justify='center'
+			align='center'
+			h='100vh'
+			overflow='hidden'
+		>
+			<SpaceBackground />
 			<HStack w='1024px' h='70vh' gap='1rem'>
 				<VStack
 					className={getBlockClass('login')}

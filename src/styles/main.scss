@@ -101,3 +101,21 @@ input:-webkit-autofill:focus {
 		transform: translate(0.7rem, 0.7rem);
 	}
 }
+
+@keyframes appearance {
+	from {
+		transform: scale(0);
+	}
+	to {
+		transform: scale(1);
+	}
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
