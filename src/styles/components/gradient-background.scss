@@ -1,0 +1,78 @@
+$size: 80%;
+
+@function generate-gradient($color) {
+	@return radial-gradient(circle, rgba($color, 0.8) 0%, transparent 50%);
+}
+
+.GradientBackground {
+	position: absolute;
+	inset: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	opacity: 0;
+	animation: $durationLong opacity 2s linear forwards;
+
+	&-container {
+		width: 100%;
+		height: 100%;
+		filter: blur(40px);
+
+		.shape {
+			position: absolute;
+			top: calc(50% - $size / 2);
+			left: calc(50% - $size / 2);
+			width: $size;
+			height: $size;
+			mix-blend-mode: hard-light;
+		}
+
+		.c1 {
+			background: generate-gradient($gray);
+			transform-origin: center center;
+			animation: moveVertical 30s ease infinite;
+		}
+
+		.c2 {
+			background: generate-gradient($red);
+			transform-origin: calc(50% - 400px);
+			animation: moveInCircle 20s reverse infinite;
+		}
+
+		.c3 {
+			top: calc(50% - $size / 2 + 200px);
+			left: calc(50% - $size / 2 - 500px);
+			background: generate-gradient(#6464ff);
+			transform-origin: calc(50% + 400px);
+			animation: moveInCircle 40s linear infinite;
+		}
+
+		.c4 {
+			background: generate-gradient($blue);
+			opacity: 0.7;
+			transform-origin: calc(50% - 200px);
+			animation: moveHorizontal 40s ease infinite;
+		}
+
+		.c5 {
+			top: calc(50% - $size);
+			left: calc(50% - $size);
+			width: calc($size * 2);
+			height: calc($size * 2);
+			background: generate-gradient($orange);
+			transform-origin: calc(50% - 800px) calc(50% + 200px);
+			animation: moveInCircle 20s ease infinite;
+		}
+
+		.cursor {
+			position: absolute;
+			top: -50%;
+			left: -50%;
+			width: 100%;
+			height: 100%;
+			background: generate-gradient($green);
+			opacity: 0.7;
+			mix-blend-mode: hard-light;
+		}
+	}
+}

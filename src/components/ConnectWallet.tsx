@@ -3,6 +3,7 @@ import { useAccount, useChainId } from 'wagmi'
 import { sepolia } from 'wagmi/chains'
 
 import { Connectors } from './Connectors'
+import { GradientBackground } from './GradientBackground'
 import { Loader } from './Loader'
 import { SwitchNetwork } from './SwitchNetwork'
 
@@ -15,7 +16,13 @@ export const ConnectWallet = () => {
 
 		if (chainId !== sepolia.id) return <SwitchNetwork />
 
-		if (!isConnected) return <Connectors />
+		if (!isConnected)
+			return (
+				<>
+					<GradientBackground />
+					<Connectors />
+				</>
+			)
 	}
 
 	return (

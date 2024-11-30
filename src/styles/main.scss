@@ -41,7 +41,7 @@ span,
 label,
 input {
 	&::selection {
-		background-color: #c53030;
+		background-color: $red;
 		color: $white;
 	}
 }
@@ -93,6 +93,15 @@ input:-webkit-autofill:focus {
 	}
 }
 
+@keyframes opacity {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
 @keyframes shift {
 	from {
 		transform: translate(0);
@@ -117,5 +126,34 @@ input:-webkit-autofill:focus {
 	}
 	to {
 		transform: rotate(360deg);
+	}
+}
+
+@keyframes moveInCircle {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes moveVertical {
+	0%,
+	100% {
+		transform: translateY(-50%);
+	}
+	50% {
+		transform: translateY(50%);
+	}
+}
+
+@keyframes moveHorizontal {
+	0%,
+	100% {
+		transform: translateX(-50%) translateY(-10%);
+	}
+	50% {
+		transform: translateX(50%) translateY(10%);
 	}
 }
