@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react'
 
+import { throttle } from '../helpers/utils'
+
 export const useCursorAnimation = () => {
 	const cursorRef = useRef<HTMLDivElement | null>(null)
 
@@ -24,12 +26,12 @@ export const useCursorAnimation = () => {
 			animationFrame = requestAnimationFrame(move)
 		}
 
-		const handleMouseMove = (event: MouseEvent) => {
+		const handleMouseMove = throttle((event: MouseEvent) => {
 			if (signal.aborted) return
 
 			tgX = event.clientX
 			tgY = event.clientY
-		}
+		}, 16)
 
 		window.addEventListener('mousemove', handleMouseMove, { signal })
 		animationFrame = requestAnimationFrame(move)

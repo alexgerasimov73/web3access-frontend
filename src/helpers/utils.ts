@@ -35,3 +35,19 @@ export const isEthAddress = (address: string): address is Address =>
 
 export const shortenAddress = (address: Address) =>
 	`${address.substring(0, 8)}...`
+
+export const throttle = <T extends (...args: Parameters<T>) => void>(
+	func: T,
+	interval: number
+) => {
+	let lastCall = 0
+
+	return (...args: Parameters<T>) => {
+		const now = Date.now()
+		if (now - lastCall >= interval) {
+			lastCall = now
+
+			func(...args)
+		}
+	}
+}
