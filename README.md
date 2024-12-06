@@ -28,6 +28,7 @@ New users go through a mandatory onboarding process before accessing a personal 
 ## Demo
 
 You can open demo on [Render](https://web3access-frontend.onrender.com/).
+ATTENTION! For the demo hosting, I'm using the free plan. The first request on the server might take 1-3 minutes because it launches the server and needs some time to be ready. Sorry! The following requests should be quicker.
 
 ### Prerequisites
 
@@ -85,6 +86,7 @@ The backend is hosted on [Render](https://render.com/). The database is hosted o
 
 ## Future Enhancements
 
+- **Implement mobile and tablet versions of the app**: It'll implement the mobile and tablet versions of the app.
 - **KYC/AML Integration**: Although not implemented, the onboarding process includes information on how to handle KYC/AML with recommended tools like [Onfido](https://onfido.com/).
 - **Refactoring the code base**: It needs to get rid of TODO's, optimize, and refactor code out where it's necessary.
 - **Test covering**: The application will be covered with tests.
